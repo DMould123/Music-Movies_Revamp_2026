@@ -25,6 +25,7 @@ export default function Albums() {
     slidesToShow: 3,
     slidesToScroll: 3,
     initialSlide: 0,
+    adaptiveHeight: true,
     responsive: [
       {
         breakpoint: 1024,
@@ -36,18 +37,19 @@ export default function Albums() {
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
+          slidesToScroll: 1,
+          initialSlide: 0
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          initialSlide: 0
         }
       }
     ]
@@ -58,13 +60,18 @@ export default function Albums() {
         <Slider {...settings} className="Albums_container--inner">
           {albums.map((album) => (
             <Card className="cardClass" key={album.AlbumId}>
-              <div style={{ textAlign: 'center' }}>
+              <div style={{ textAlign: 'center', padding: '0.5rem' }}>
                 <Card.Img
                   src={'/images/' + album.AlbumArtwork}
                   className="card-image"
                   style={{
-                    height: '550px',
-                    width: '550px'
+                    width: '100%',
+                    maxWidth: '520px',
+                    height: 'auto',
+                    aspectRatio: '1 / 1',
+                    objectFit: 'cover',
+                    borderRadius: '12px',
+                    margin: '0 auto'
                   }}
                 />
               </div>

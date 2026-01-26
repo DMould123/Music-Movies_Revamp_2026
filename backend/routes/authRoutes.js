@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const cors = require('cors')
+const config = require('../config')
 const {
   test,
   registerUser,
@@ -9,18 +10,14 @@ const {
   logoutUser
 } = require('../controllers/authControllers')
 
-//middleware
 const corsOptions = {
-  origin: 'https://musicandmovies.netlify.app',
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  origin: config.clientOrigin,
+  credentials: true
 }
-router.use(cors(corsOptions))
 
 router.use(cors(corsOptions))
 
-router.get('/', test)
+router.get('/test', test)
 router.post('/register', registerUser)
 router.post('/login', loginUser)
 router.get('/profile', getProfile)

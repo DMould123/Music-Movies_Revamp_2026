@@ -1,180 +1,278 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context/userContext'
+import api from '../../api'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import '../../styles/retro.css'
+import '../../styles/dashboard.css'
 
 const Dashboard = () => {
   const { user } = useContext(UserContext)
-  const [movies, setMovies] = useState([])
-  const [formData, setFormData] = useState({
-    name: '',
-    release: '',
-    image: '',
-    rating: '',
-    bio: ''
-  })
-  const [isAddingMovie, setIsAddingMovie] = useState(false) // State for form visibility
-
-  // Fetch the list of movies when the component mounts
-  useEffect(() => {
-    async function fetchMovies() {
-      try {
-        const response = await fetch(
-          `https://react-music-movies.onrender.com/api/movies`
-        )
-        if (response.ok) {
-          const data = await response.json()
-          setMovies(data)
-        } else {
-          console.error('Error fetching movies.')
-        }
-      } catch (error) {
-        console.error('An error occurred:', error)
-      }
+  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  const [editingId, setEditingId] = useState(null)
+  const { data: movies = [], isLoading } = useQuery({
+    queryKey: ['movies'],
+    queryFn: async () => {
+      const res = await api.get('/api/movies')
+      return res.data
     }
+  })
 
-    fetchMovies()
-  }, [])
+  const schema = z.object({
+    name: z.string().min(1, 'Required'),
+    release: z.coerce.number().int().min(1888, 'Invalid year'),
+    image: z.string().url('Must be a URL'),
+    rating: z.coerce.number().min(0).max(10),
+    bio: z.string().min(1, 'Required')
+  })
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting }
+  } = useForm({ resolver: zodResolver(schema) })
+  const [isAddingMovie, setIsAddingMovie] = useState(false)
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData({
-      ...formData,
-      [name]: value
-    })
-  }
+  const addMutation = useMutation({
+    mutationFn: async (payload) => {
+      const { data } = await api.post('/api/movies', payload)
+      return data
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['movies'] })
+    }
+  })
 
-  const handleAddMovie = async () => {
+  const handleAddMovie = async (data) => {
     try {
-      const response = await fetch(
-        `https://react-music-movies.onrender.com/api/movies`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(formData)
-        }
-      )
-
-      if (response.ok) {
-        // Movie added successfully, update the movie list.
-        const newMovie = await response.json()
-        setMovies([...movies, newMovie])
-        // Clear the form data
-        setFormData({
-          name: '',
-          release: '',
-          image: '',
-          rating: '',
-          bio: ''
-        })
-        // Close the form
-        setIsAddingMovie(false)
-      } else {
-        // Handle error, e.g., display an error message to the user.
-        console.error('Error adding movie.')
-      }
+      await addMutation.mutateAsync(data)
+      reset()
+      setIsAddingMovie(false)
     } catch (error) {
       console.error('An error occurred:', error)
     }
   }
 
+  const deleteMutation = useMutation({
+    mutationFn: async (movieId) => {
+      await api.delete(`/api/movies/${movieId}`)
+    },
+    onSuccess: () =>
+      queryClient.invalidateQueries({ queryKey: ['movies'] })
+  })
+
+  const updateMutation = useMutation({
+    mutationFn: async ({ id, data }) => {
+      const { data: updated } = await api.put(`/api/movies/${id}`, data)
+      return updated
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['movies'] })
+      setEditingId(null)
+    }
+  })
+
   const handleDeleteMovie = async (movieId) => {
     try {
-      const response = await fetch(
-        `https://react-music-movies.onrender.com/api/movies/${movieId}`,
-        {
-          method: 'DELETE'
-        }
-      )
-
-      if (response.ok) {
-        // Movie deleted successfully, update the movie list.
-        setMovies(movies.filter((movie) => movie._id !== movieId))
-        console.log('Movie deleted successfully!')
-      } else {
-        // Handle error, e.g., display an error message to the user.
-        console.error('Error deleting movie.')
-      }
+      await deleteMutation.mutateAsync(movieId)
     } catch (error) {
       console.error('An error occurred:', error)
     }
   }
 
   return (
-    <div>
-      <h1>Music & Movies Dashboard</h1>
-      {!!user && <h2>Hi {user.name}! Welcome to Music & Movies</h2>}
+    <div className="dashboard-wrapper">
+      <div className="retro-background">
+        <div className="y2k-grid"></div>
+        <div className="grid-dots"></div>
+      </div>
 
-      {/* Toggle the form visibility */}
-      <button onClick={() => setIsAddingMovie(!isAddingMovie)}>
-        {isAddingMovie ? 'Cancel' : 'Add Movie'}
-      </button>
-
-      {/* Movie Addition Form (conditionally rendered) */}
-      {isAddingMovie && (
-        <div>
-          <h3>Add a New Movie</h3>
-          <form>
-            {/* Form fields for movie data here */}
-            <div>
-              <label>Name:</label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label>Release Year:</label>
-              <input
-                type="number"
-                name="release"
-                value={formData.release}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label>Image URL:</label>
-              <input
-                type="text"
-                name="image"
-                value={formData.image}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label>Rating:</label>
-              <input
-                type="number"
-                name="rating"
-                value={formData.rating}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <label>Bio:</label>
-              <textarea
-                name="bio"
-                value={formData.bio}
-                onChange={handleInputChange}
-              />
-            </div>
-            <button type="button" onClick={handleAddMovie}>
-              Add Movie
+      <div className="dashboard-container">
+        <div className="dashboard-header">
+          <h1 className="y2k-title">DIRECTOR'S CUT</h1>
+          {!!user && <p className="welcome-text">Welcome back, {user.name}!</p>}
+          {!user && (
+            <button className="retro-button" onClick={() => navigate('/login')}>
+              <span className="button-text">Login to Manage</span>
             </button>
-          </form>
+          )}
         </div>
-      )}
-      <h3>List of Movies</h3>
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie._id}>
-            <strong>{movie.name}</strong> ({movie.release})
-            <button onClick={() => handleDeleteMovie(movie._id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+
+        {user && (
+          <div className="action-bar">
+            <button 
+              className={`retro-button ${isAddingMovie ? 'active' : ''}`}
+              onClick={() => setIsAddingMovie(!isAddingMovie)}
+            >
+              <span className="button-text">{isAddingMovie ? '✕ Cancel' : '+ Add Movie'}</span>
+            </button>
+          </div>
+        )}
+
+        {isAddingMovie && (
+          <div className="add-movie-form future-card">
+            <div className="chrome-header">
+              <h2 className="y2k-title" style={{ fontSize: '1.5rem' }}>NEW FEATURE</h2>
+            </div>
+            <form className="future-form" onSubmit={handleSubmit(handleAddMovie)}>
+              <div className="retro-field">
+                <div className="field-chrome">
+                  <input
+                    type="text"
+                    className="retro-input"
+                    placeholder="Movie Title"
+                    {...register('name')}
+                  />
+                  <label className="retro-label">Title</label>
+                </div>
+                {errors.name && <span className="field-error">{errors.name.message}</span>}
+              </div>
+
+              <div className="retro-field">
+                <div className="field-chrome">
+                  <input
+                    type="number"
+                    className="retro-input"
+                    placeholder="Release Year"
+                    {...register('release')}
+                  />
+                  <label className="retro-label">Release Year</label>
+                </div>
+                {errors.release && <span className="field-error">{errors.release.message}</span>}
+              </div>
+
+              <div className="retro-field">
+                <div className="field-chrome">
+                  <input
+                    type="text"
+                    className="retro-input"
+                    placeholder="Image URL"
+                    {...register('image')}
+                  />
+                  <label className="retro-label">Image URL</label>
+                </div>
+                {errors.image && <span className="field-error">{errors.image.message}</span>}
+              </div>
+
+              <div className="retro-field">
+                <div className="field-chrome">
+                  <input
+                    type="number"
+                    step="0.1"
+                    className="retro-input"
+                    placeholder="Rating (0-10)"
+                    {...register('rating')}
+                  />
+                  <label className="retro-label">Rating</label>
+                </div>
+                {errors.rating && <span className="field-error">{errors.rating.message}</span>}
+              </div>
+
+              <div className="retro-field">
+                <div className="field-chrome">
+                  <textarea
+                    className="retro-input retro-textarea"
+                    placeholder="Movie description..."
+                    rows="4"
+                    {...register('bio')}
+                  />
+                  <label className="retro-label">Description</label>
+                </div>
+                {errors.bio && <span className="field-error">{errors.bio.message}</span>}
+              </div>
+
+              <button type="submit" className="retro-button" disabled={isSubmitting}>
+                <span className="button-text">{isSubmitting ? 'Adding...' : 'Add to Collection'}</span>
+              </button>
+            </form>
+          </div>
+        )}
+
+        <div className="movies-section">
+          <h2 className="section-title">YOUR COLLECTION</h2>
+          {isLoading ? (
+            <div className="loading-state">
+              <div className="loading-spinner"></div>
+              <p>Loading your collection...</p>
+            </div>
+          ) : movies.length === 0 ? (
+            <div className="empty-state">
+              <p>No movies in your collection yet.</p>
+              {user && <p>Click "Add Movie" to get started!</p>}
+            </div>
+          ) : (
+            <div className="movies-grid">
+              {movies.map((movie) => (
+                <div key={movie._id} className="movie-card">
+                  {editingId === movie._id ? (
+                    <div className="edit-mode">
+                      <input
+                        type="text"
+                        defaultValue={movie.name}
+                        id={`edit-name-${movie._id}`}
+                        className="edit-input"
+                        placeholder="Movie name"
+                      />
+                      <input
+                        type="number"
+                        defaultValue={movie.release}
+                        id={`edit-release-${movie._id}`}
+                        className="edit-input"
+                        placeholder="Year"
+                      />
+                      <div className="edit-actions">
+                        <button
+                          className="save-btn"
+                          onClick={() => {
+                            const name = document.getElementById(`edit-name-${movie._id}`).value
+                            const release = Number(document.getElementById(`edit-release-${movie._id}`).value)
+                            updateMutation.mutate({
+                              id: movie._id,
+                              data: { name, release, image: movie.image, rating: movie.rating, bio: movie.bio }
+                            })
+                          }}
+                        >
+                          ✓ Save
+                        </button>
+                        <button className="cancel-btn" onClick={() => setEditingId(null)}>
+                          ✕ Cancel
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="movie-info">
+                        <h3 className="movie-title">{movie.name}</h3>
+                        <p className="movie-year">{movie.release}</p>
+                        {movie.rating && (
+                          <div className="movie-rating">
+                            <span className="rating-star">★</span>
+                            <span>{movie.rating}/10</span>
+                          </div>
+                        )}
+                      </div>
+                      {user && (
+                        <div className="movie-actions">
+                          <button className="edit-btn" onClick={() => setEditingId(movie._id)}>
+                            Edit
+                          </button>
+                          <button className="delete-btn" onClick={() => handleDeleteMovie(movie._id)}>
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

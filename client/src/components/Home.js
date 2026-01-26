@@ -1,35 +1,39 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import axios from 'axios'
+import api from '../api'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useContext } from 'react'
+import { UserContext } from '../context/userContext'
+import SkeletonCard from './SkeletonCard'
 
 function Home(props) {
   const [name, setName] = useState('')
+  const {
+    data: moviesData,
+    isLoading,
+    isError
+  } = useQuery({
+    queryKey: ['movies'],
+    queryFn: async () => {
+      const res = await api.get('/api/movies')
+      return res.data
+    }
+  })
   const [movies, setMovies] = useState([])
-  const [originalMovies, setOriginalMovies] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    axios
-      .get(`https://react-music-movies.onrender.com/api/movies`)
-      .then((response) => {
-        setMovies(response.data)
-        setOriginalMovies(response.data)
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-        setIsLoading(false)
-      })
-  }, [])
+  React.useEffect(() => {
+    if (!moviesData) return
+    setMovies(moviesData)
+  }, [moviesData])
 
   const filter = (e) => {
     const keyword = e.target.value
 
     if (keyword !== '') {
-      const results = originalMovies.filter((movie) => {
+      const results = (moviesData || []).filter((movie) => {
         return (
           movie.name &&
           movie.name.toLowerCase().startsWith(keyword.toLowerCase())
@@ -37,11 +41,31 @@ function Home(props) {
       })
       setMovies(results)
     } else {
-      setMovies(originalMovies)
+      setMovies(moviesData || [])
     }
 
     setName(keyword)
   }
+
+  const { user } = useContext(UserContext)
+  const queryClient = useQueryClient()
+  const { data: favorites = [] } = useQuery({
+    queryKey: ['favorites'],
+    queryFn: async () => {
+      const res = await api.get('/api/favorites')
+      return res.data
+    },
+    enabled: !!user
+  })
+
+  const favoriteIds = new Set(favorites.map((m) => m._id))
+
+  const toggleFavorite = useMutation({
+    mutationFn: async (movieId) => {
+      await api.post(`/api/favorites/${movieId}/toggle`)
+    },
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['favorites'] })
+  })
 
   const settings = {
     dots: true,
@@ -89,8 +113,14 @@ function Home(props) {
           placeholder="Search"
           style={{ fontWeight: 'bold', color: 'black' }}
         />
-        {isLoading ? ( // Render loading spinner if isLoading is true
-          <div className="loading-spinner">Loading...</div>
+        {isLoading ? (
+          <Slider {...settings} className="Books_container--inner">
+            {[1, 2, 3].map((i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </Slider>
+        ) : isError ? (
+          <div style={{ color: 'red' }}>Failed to load movies.</div>
         ) : (
           <Slider {...settings} className="Books_container--inner">
             {movies && movies.length > 0 ? (
@@ -104,6 +134,23 @@ function Home(props) {
                   />
                   <div className="card-body">
                     <h3 className="card-title">{movie.name}</h3>
+                    {user && (
+                      <button
+                        aria-label="Toggle Favorite"
+                        onClick={() => toggleFavorite.mutate(movie._id)}
+                        style={{
+                          border: 'none',
+                          background: 'transparent',
+                          fontSize: 24,
+                          cursor: 'pointer',
+                          color: favoriteIds.has(movie._id) ? 'gold' : '#aaa',
+                          float: 'right'
+                        }}
+                        title={favoriteIds.has(movie._id) ? 'Unfavorite' : 'Favorite'}
+                      >
+                        ★
+                      </button>
+                    )}
                     <p>
                       <small>
                         <b>Release Year: </b> {movie.release}

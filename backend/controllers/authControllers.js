@@ -1,6 +1,10 @@
 const { hashPassword, comparePassword } = require('../helpers/auth')
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
+const config = require('../config')
+const { registerSchema, loginSchema } = require('../validation/authSchemas')
+
+const formatZodError = (issueList) => issueList.map((i) => i.message).join(', ')
 
 const test = (req, res) => {
   res.json('test working')
@@ -9,46 +13,30 @@ const test = (req, res) => {
 // Register Endpoint
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password, username } = req.body
-
-    // Check if name is entered
-    if (!name) {
-      return res.json({
-        error: 'Name is required'
-      })
-    }
-    // Check if username is entered
-    if (!username) {
-      return res.json({
-        error: 'Username is required'
-      })
+    const parsed = registerSchema.safeParse(req.body)
+    if (!parsed.success) {
+      return res.status(400).json({ error: formatZodError(parsed.error.issues) })
     }
 
-    // Check if password is correct
-    if (!password || password.length < 6) {
-      return res.json({
-        error: 'Password is required and should be at least 6 characters'
-      })
-    }
+    const { name, email, password } = parsed.data
 
-    // Check email
-    const exist = await User.findOne({ email })
-    if (exist) {
-      return res.json({
-        error: 'Email already exists'
-      })
+    const existingEmail = await User.findOne({ email })
+    if (existingEmail) {
+      return res.status(400).json({ error: 'Email already exists' })
     }
 
     const hashedPassword = await hashPassword(password)
-    //create user in database
     const user = await User.create({
       name,
-      username,
       email,
       password: hashedPassword
     })
 
-    return res.json(user)
+    return res.status(201).json({
+      id: user._id,
+      name: user.name,
+      email: user.email
+    })
   } catch (error) {
     console.log(error)
     return res.status(500).json({ error: 'Server error' })
@@ -58,47 +46,63 @@ const registerUser = async (req, res) => {
 // Login Endpoint
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body
-    // check if user exists
+    const parsed = loginSchema.safeParse(req.body)
+    if (!parsed.success) {
+      return res.status(400).json({ error: formatZodError(parsed.error.issues) })
+    }
+
+    const { email, password } = parsed.data
     const user = await User.findOne({ email })
     if (!user) {
-      return res.json({ error: 'No user found' })
+      return res.status(401).json({ error: 'Invalid credentials' })
     }
-    // check if password matches
+
     const match = await comparePassword(password, user.password)
-    if (match) {
-      jwt.sign(
-        { email: user.email, id: user._id, name: user.name },
-        process.env.JWT_SECRET,
-        {},
-        (err, token) => {
-          if (err) throw err
-          res.clearCookie('token') // Clear the existing token
-          res.cookie('token', token).json(user)
-        }
-      )
-    }
     if (!match) {
-      res.json({ error: 'Passwords do not match' })
+      return res.status(401).json({ error: 'Invalid credentials' })
     }
+
+    jwt.sign(
+      { email: user.email, id: user._id, name: user.name },
+      config.jwtSecret,
+      { expiresIn: '7d' },
+      (err, token) => {
+        if (err) {
+          return res.status(500).json({ error: 'Token generation failed' })
+        }
+        res
+          .cookie('token', token, config.cookieOptions)
+          .json({ id: user._id, name: user.name, email: user.email })
+      }
+    )
   } catch (error) {
     console.log(error)
+    return res.status(500).json({ error: 'Server error' })
   }
 }
 const getProfile = (req, res) => {
-  const { token } = req.cookies
-  if (token) {
-    jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
-      if (err) throw err
+  try {
+    const { token } = req.cookies
+    if (!token) {
+      return res.json(null)
+    }
+
+    jwt.verify(token, config.jwtSecret, (err, user) => {
+      if (err) {
+        return res.status(401).json({ error: 'Invalid or expired token' })
+      }
       res.json(user)
     })
-  } else {
-    res.json(null)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: 'Server error' })
   }
 }
 
 const logoutUser = (req, res) => {
-  res.clearCookie('token').json({ message: 'Logged out successfully' })
+  res
+    .clearCookie('token', { ...config.cookieOptions, maxAge: 0 })
+    .json({ message: 'Logged out successfully' })
 }
 
 module.exports = { test, registerUser, loginUser, getProfile, logoutUser }
