@@ -1,18 +1,21 @@
-# React Music & Movies 🎬🎵
+# React Music & Movies Revamp 2026 🎬🎵✨
 
-A full-stack MERN application for browsing movies and music albums with user authentication, favorites, and CRUD operations. Originally created as a 2023 school exam project, now enhanced with modern best practices.
+A full-stack MERN application for browsing movies and music albums with user authentication, favorites, and CRUD operations. Originally created as a 2023 school exam project, now completely revamped with modern best practices, retro-future Y2K aesthetic, and enterprise-grade security.
 
 ## ✨ Features
 
-- 🔐 **Authentication**: JWT-based auth with secure httpOnly cookies
+- 🔐 **Authentication**: JWT-based auth with secure httpOnly cookies (username-free registration)
 - 🎬 **Movies**: Browse, search, view details, and manage favorites
 - ⭐ **Favorites**: Toggle favorites (requires login)
-- 📊 **Dashboard**: Add, edit, and delete movies (admin)
-- 🎵 **Albums**: Browse music albums
-- 📱 **Responsive**: Mobile-friendly UI with skeleton loaders
-- ✅ **Validation**: Zod schemas on client and server
+- 📊 **Dashboard**: Stunning retro-future dashboard with add, edit, and delete movie capabilities
+- 🎵 **Albums**: Browse music albums with responsive carousel
+- 🎨 **Retro Y2K Design**: Movie-themed gradients (crimson/gold/violet) with glass-morphism effects
+- 📱 **Responsive**: Mobile-friendly UI with skeleton loaders and adaptive layouts
+- ✅ **Validation**: Zod schemas on client and server with real-time error feedback
 - 🔄 **React Query**: Data fetching with caching and automatic refetch
-- 🎨 **Enhanced UX**: Password visibility toggles, confirm password, error boundaries
+- 🎭 **Enhanced UX**: Password visibility toggles, animated backgrounds, loading states
+- 🔒 **Security**: Environment secrets properly managed, no exposed credentials
+- ⚡ **CI/CD**: Automated testing and builds via GitHub Actions
 
 ## 🏗️ Architecture
 
@@ -163,11 +166,12 @@ npm run format        # Prettier format
 - **State Management**: React Context + React Query (TanStack Query)
 - **Forms**: React Hook Form + Zod validation
 - **HTTP Client**: Axios
-- **UI Components**: Bootstrap, React Icons
+- **UI Components**: Bootstrap, React Icons (FaEye/FaEyeSlash for password toggles)
+- **Styling**: Custom retro Y2K CSS with movie-themed gradients and animations
 - **Notifications**: React Hot Toast
-- **Carousel**: React Slick
+- **Carousel**: React Slick for albums showcase
 - **Error Handling**: Error Boundaries
-- **Loading States**: Skeleton loaders
+- **Loading States**: Skeleton loaders with retro aesthetics
 
 ## 🔒 Security Features
 
@@ -178,6 +182,9 @@ npm run format        # Prettier format
 - ✅ Input validation on client and server
 - ✅ CORS configured for specific origin
 - ✅ Protected routes with auth middleware
+- ✅ Environment secrets properly gitignored (.env files excluded from repository)
+- ✅ MongoDB credentials secured with no exposed secrets
+- ✅ Removed username field to simplify registration (name, email, password only)
 
 ## 📦 Available Scripts
 
@@ -236,7 +243,15 @@ REACT_APP_API_URL=  # Backend API URL (uses proxy if omitted)
 2. Husky pre-commit hooks run automatically
 3. Lint-staged formats code on commit
 4. Write tests for new features
-5. CI runs on push via GitHub Actions
+5. CI runs on push via GitHub Actions (build and test)
+6. All secrets must be in `.env` files (never commit `.env` to git)
+
+## 🚀 Recent Updates (January 2026)
+
+- **Jan 26**: Initial repository setup with complete MERN stack
+- **Jan 27**: Security fix - removed exposed `.env` file, added proper `.gitignore`
+- **Jan 28**: CI/CD fix - synchronized package-lock.json files for successful builds
+- **Jan 29**: README documentation update with retro Y2K design details
 
 ## 🎓 Project Evolution
 
@@ -260,13 +275,42 @@ This project showcases progression from a basic MERN exam project (2023) to a pr
 - ✅ Inline editing capability
 - ✅ Unit tests with Jest
 - ✅ ESLint + Prettier + Husky
-- ✅ CI/CD with GitHub Actions
+- ✅ CI/CD with GitHub Actions (automated build and test)
 - ✅ Environment-based configuration
-- ✅ Security best practices (httpOnly cookies, CORS)
+- ✅ Security best practices (httpOnly cookies, CORS, proper secret management)
+- ✅ **Retro-Future Y2K Design System**: Custom CSS with movie-themed color palette
+- ✅ **Animated Backgrounds**: Y2K grid dots, scanner lines, and chrome effects
+- ✅ **Glass-Morphism UI**: Frosted glass cards with backdrop blur
+- ✅ **Responsive Dashboard**: Grid layout with hover animations and smooth transitions
+- ✅ **Simplified Auth Flow**: Removed username requirement for streamlined UX
+- ✅ **18 Curated Movies**: Including Home Alone 2, Saltburn, Karate Kid with Cloudinary images
 
 ## 📸 Screenshots
 
-_(Add screenshots of your app here)_
+### Retro Y2K Design System
+The app features a stunning retro-future aesthetic inspired by Y2K culture:
+- **Movie-Themed Colors**: Crimson (#DC143C), Gold (#FFD700), and Violet (#9400D3)
+- **Glass-Morphism Effects**: Frosted glass cards with backdrop blur
+- **Animated Backgrounds**: Y2K grid patterns and scanner lines
+- **Chrome Borders**: Gradient borders with shifting animations
+- **Responsive Forms**: "Box Office" login, "Join the Cast" registration
+- **Director's Cut Dashboard**: Professional movie management interface with grid layout
+
+### Key Pages
+- **Login/Register**: Retro-themed authentication with password visibility toggles
+- **Dashboard**: Full CRUD operations with inline editing and movie cards
+- **Home**: Browse 18+ curated movies with ratings and details
+- **Albums**: Responsive carousel showcasing music albums
+
+## 🎨 Design Philosophy
+
+The 2026 revamp embraces a **retro-future Y2K aesthetic** that merges nostalgia with modern web design:
+
+- **Color Palette**: Movie theater-inspired crimson, gold, and violet gradients
+- **Typography**: Bold, uppercase headings with letter-spacing for that classic blockbuster feel
+- **Animations**: Smooth transitions, hover effects, and pulsing title animations
+- **Accessibility**: Proper contrast ratios maintained despite creative color choices
+- **Mobile-First**: All retro effects scale beautifully on tablets and phones
 
 ## 📄 License
 
@@ -275,57 +319,7 @@ This project was created as a school exam project in 2023 and has been enhanced 
 ---
 
 **Built with ❤️ using the MERN stack**
-git clone https://github.com/your-username/movies-music-app.git
 
-````
+**Repository**: [Music-Movies_Revamp_2026](https://github.com/DMould123/Music-Movies_Revamp_2026)
 
-2. Navigate to the project directory:
-
-```bash
-cd movies-music-app
-````
-
-3. Install the required dependencies for both the front-end and back-end:
-
-   ```bash
-   cd client && npm install
-   ```
-
-   ```bash
-   cd server && npm install
-   ```
-
-4. Start the back-end server:
-
-   ```bash
-   cd server && npm start
-   ```
-
-5. Start the front-end development server:
-
-   ```bash
-   cd client && npm start
-   ```
-
-6. Open your web browser and visit http://localhost:3000 to access the Movies & Music app.
-
-**Note**: You will need an active internet connection to load the necessary CSS and JavaScript files.
-
-## Features
-
-- 🌟 Explore a collection of movies with details like name, release year, image, rating, & bio
-- 🔍 Search for movies by name
-- ➕ Add new movies to the collection
-- 🗑️ Delete movies from the collection
-- 🔐 User authentication and registration
-- 👤 User profile management
-- 📱 Responsive design for optimal viewing on various devices
-- 🏗️ Well-structured and organized codebase for easy maintenance and future expansions
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE.md file for details.
-
-## Author
-
-- David Mould
+**Author**: David Mould
