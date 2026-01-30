@@ -41,10 +41,13 @@
   max-width: 600px;
   margin: 0 auto 40px;
   position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 .movie-search-input {
-  width: 100%;
+  flex: 1;
   padding: 18px 24px;
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
   backdrop-filter: blur(10px);
@@ -68,6 +71,61 @@
   border-color: #FFD700;
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
   transform: scale(1.02);
+}
+
+/* Sort Select Dropdown */
+.sort-select {
+  padding: 15px 20px;
+  background: linear-gradient(145deg, rgba(255, 215, 0, 0.15), rgba(255, 215, 0, 0.08));
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  color: #FFD700;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  white-space: nowrap;
+}
+
+.sort-select:hover {
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.sort-select:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+}
+
+.sort-select option {
+  background: #16213e;
+  color: #FFD700;
+  padding: 10px;
+  font-weight: 600;
+}
+
+.sort-select option:hover {
+  background: #DC143C;
+}
+
+/* Responsive - Stack on mobile */
+@media (max-width: 768px) {
+  .search-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sort-select {
+    width: 100%;
+  }
+
+  .movie-search-input {
+    width: 100%;
+  }
 }
 
 /* Movies Slider Container */

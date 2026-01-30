@@ -12,6 +12,7 @@ import '../styles/retro.css'
 
 function Home(props) {
   const [name, setName] = useState('')
+  const [sortOrder, setSortOrder] = useState('default')
   const {
     data: moviesData,
     isLoading,
@@ -30,22 +31,45 @@ function Home(props) {
     setMovies(moviesData)
   }, [moviesData])
 
-  const filter = (e) => {
-    const keyword = e.target.value
+  const applyFiltersAndSort = (data, keyword, sort) => {
+    let results = data || []
 
+    // Apply search filter
     if (keyword !== '') {
-      const results = (moviesData || []).filter((movie) => {
+      results = results.filter((movie) => {
         return (
           movie.name &&
           movie.name.toLowerCase().startsWith(keyword.toLowerCase())
         )
       })
-      setMovies(results)
-    } else {
-      setMovies(moviesData || [])
     }
 
+    // Apply sort
+    if (sort === 'oldest') {
+      results = [...results].sort((a, b) => a.release - b.release)
+    } else if (sort === 'newest') {
+      results = [...results].sort((a, b) => b.release - a.release)
+    } else if (sort === 'highest-rating') {
+      results = [...results].sort((a, b) => (b.rating || 0) - (a.rating || 0))
+    } else if (sort === 'lowest-rating') {
+      results = [...results].sort((a, b) => (a.rating || 0) - (b.rating || 0))
+    }
+
+    return results
+  }
+
+  const filter = (e) => {
+    const keyword = e.target.value
     setName(keyword)
+    const filtered = applyFiltersAndSort(moviesData, keyword, sortOrder)
+    setMovies(filtered)
+  }
+
+  const handleSort = (e) => {
+    const newSort = e.target.value
+    setSortOrder(newSort)
+    const filtered = applyFiltersAndSort(moviesData, name, newSort)
+    setMovies(filtered)
   }
 
   const { user } = useContext(UserContext)
@@ -123,6 +147,17 @@ function Home(props) {
           className="movie-search-input"
           placeholder="🔍 Search Movies..."
         />
+        <select 
+          value={sortOrder} 
+          onChange={handleSort}
+          className="sort-select"
+        >
+          <option value="default">Sort By Release Date</option>
+          <option value="oldest">Oldest to Newest</option>
+          <option value="newest">Newest to Oldest</option>
+          <option value="highest-rating">Highest Rating</option>
+          <option value="lowest-rating">Lowest Rating</option>
+        </select>
       </div>
 
       {isLoading ? (
