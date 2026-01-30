@@ -67,7 +67,7 @@ const Contact = () => {
         <div className="future-card">
           <div className="logo-container">
             <img
-              src="/images/logo.png"
+              src="https://res.cloudinary.com/dele4dvi9/image/upload/v1769813010/movies%20and%20music/music/logo_t4iunx.png"
               alt="Music & Movies Logo"
               className="card-logo"
             />

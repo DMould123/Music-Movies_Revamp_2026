@@ -56,7 +56,7 @@ function NavBar() {
             href="/"
           >
             <img
-              src={'/images/logo.png'}
+              src={'https://res.cloudinary.com/dele4dvi9/image/upload/v1769813010/movies%20and%20music/music/logo_t4iunx.png'}
               alt="Music & Movies"
               className="navbar-logo-img"
               style={{ width: '300px', height: '80px' }}

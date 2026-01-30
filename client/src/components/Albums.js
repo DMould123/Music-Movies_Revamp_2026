@@ -76,7 +76,7 @@ export default function Albums() {
               <Card className="album-card-inner">
                 <div className="album-image-container">
                   <Card.Img
-                    src={'/images/' + album.AlbumArtwork}
+                    src={album.AlbumArtwork}
                     className="album-card-image"
                     alt={album.AlbumTitle}
                   />
