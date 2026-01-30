@@ -1,0 +1,195 @@
+/* NavBar - Retro Y2K Styling */
+
+.navbar-y2k {
+  background: linear-gradient(145deg, rgba(16, 16, 40, 0.98), rgba(32, 32, 64, 0.95)) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 2px solid rgba(255, 215, 0, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-y2k .container {
+  position: relative;
+}
+
+/* Animated border effect */
+.navbar-y2k::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #DC143C, #FFD700, #9400D3, #DC143C);
+  background-size: 400% 400%;
+  animation: borderFlow 6s ease-in-out infinite;
+}
+
+@keyframes borderFlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Logo */
+.navbar-y2k .navbar-brand {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navbar-y2k .navbar-brand:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+.navbar-logo-img {
+  filter: drop-shadow(0 2px 8px rgba(255, 215, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+/* Nav Links */
+.navbar-y2k .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 18px !important;
+  margin: 0 5px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navbar-y2k .nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #DC143C, #FFD700);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.navbar-y2k .nav-link:hover {
+  color: #FFD700 !important;
+  transform: translateY(-2px);
+}
+
+.navbar-y2k .nav-link:hover::before {
+  width: 80%;
+}
+
+/* Active link - bold style */
+.navbar-y2k .nav-link[style*="bold"] {
+  color: #FFD700 !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.navbar-y2k .nav-link[style*="bold"]::before {
+  width: 100%;
+  background: linear-gradient(90deg, #FFD700, #DC143C);
+}
+
+/* Logout Button */
+.logout-btn-y2k {
+  background: linear-gradient(135deg, #DC143C, #9400D3);
+  border: 2px solid transparent;
+  border-radius: 25px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 24px;
+  margin-left: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.logout-btn-y2k::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.logout-btn-y2k:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+.logout-btn-y2k:hover::before {
+  left: 100%;
+}
+
+.logout-btn-y2k:active {
+  transform: translateY(0);
+}
+
+/* Navbar Toggle */
+.navbar-y2k .navbar-toggler {
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+}
+
+.navbar-y2k .navbar-toggler:hover {
+  border-color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.navbar-y2k .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 215, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Mobile Menu */
+@media (max-width: 991px) {
+  .navbar-y2k .navbar-collapse {
+    background: linear-gradient(145deg, rgba(16, 16, 40, 0.98), rgba(32, 32, 64, 0.95));
+    border: 2px solid rgba(255, 215, 0, 0.2);
+    border-radius: 12px;
+    margin-top: 15px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
+  
+  .navbar-y2k .nav-link {
+    padding: 12px 16px !important;
+    margin: 5px 0;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .navbar-y2k .nav-link:hover {
+    background: rgba(255, 215, 0, 0.1);
+  }
+  
+  .logout-btn-y2k {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+}
+
+/* Small screens */
+@media (max-width: 576px) {
+  .navbar-y2k {
+    padding: 8px 0;
+  }
+  
+  .navbar-logo-img {
+    max-width: 200px !important;
+    height: auto !important;
+  }
+}

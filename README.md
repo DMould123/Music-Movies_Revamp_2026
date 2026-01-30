@@ -288,7 +288,9 @@ This project showcases progression from a basic MERN exam project (2023) to a pr
 ## 📸 Screenshots
 
 ### Retro Y2K Design System
+
 The app features a stunning retro-future aesthetic inspired by Y2K culture:
+
 - **Movie-Themed Colors**: Crimson (#DC143C), Gold (#FFD700), and Violet (#9400D3)
 - **Glass-Morphism Effects**: Frosted glass cards with backdrop blur
 - **Animated Backgrounds**: Y2K grid patterns and scanner lines
@@ -297,6 +299,7 @@ The app features a stunning retro-future aesthetic inspired by Y2K culture:
 - **Director's Cut Dashboard**: Professional movie management interface with grid layout
 
 ### Key Pages
+
 - **Login/Register**: Retro-themed authentication with password visibility toggles
 - **Dashboard**: Full CRUD operations with inline editing and movie cards
 - **Home**: Browse 18+ curated movies with ratings and details

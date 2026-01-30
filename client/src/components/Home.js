@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import api from '../api'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useContext } from 'react'
 import { UserContext } from '../context/userContext'
 import SkeletonCard from './SkeletonCard'
+import '../styles/home.css'
+import '../styles/retro.css'
 
 function Home(props) {
   const [name, setName] = useState('')
@@ -103,79 +104,84 @@ function Home(props) {
   }
 
   return (
-    <>
-      <div className="Home" style={{ textAlign: 'center' }}>
+    <div className="home-wrapper">
+      <div className="retro-background">
+        <div className="y2k-grid"></div>
+        <div className="grid-dots"></div>
+      </div>
+
+      <div className="home-header">
+        <h1 className="home-title">NOW SHOWING</h1>
+        <p className="home-subtitle">Your Cinematic Journey Starts Here</p>
+      </div>
+
+      <div className="search-container">
         <input
           type="search"
           value={name}
           onChange={filter}
-          className="movie-input"
-          placeholder="Search"
-          style={{ fontWeight: 'bold', color: 'black' }}
+          className="movie-search-input"
+          placeholder="🔍 Search Movies..."
         />
-        {isLoading ? (
-          <Slider {...settings} className="Books_container--inner">
+      </div>
+
+      {isLoading ? (
+        <div className="movies-slider-container">
+          <Slider {...settings}>
             {[1, 2, 3].map((i) => (
               <SkeletonCard key={i} />
             ))}
           </Slider>
-        ) : isError ? (
-          <div style={{ color: 'red' }}>Failed to load movies.</div>
-        ) : (
-          <Slider {...settings} className="Books_container--inner">
+        </div>
+      ) : isError ? (
+        <div className="error-message">Failed to load movies. Please try again.</div>
+      ) : (
+        <div className="movies-slider-container">
+          <Slider {...settings}>
             {movies && movies.length > 0 ? (
               movies.map((movie) => (
-                <div className="cardClass" key={movie._id}>
-                  <img
-                    src={movie.image}
-                    className="card-image"
-                    style={{ width: 300 }}
-                    alt=""
-                  />
-                  <div className="card-body">
-                    <h3 className="card-title">{movie.name}</h3>
-                    {user && (
-                      <button
-                        aria-label="Toggle Favorite"
-                        onClick={() => toggleFavorite.mutate(movie._id)}
-                        style={{
-                          border: 'none',
-                          background: 'transparent',
-                          fontSize: 24,
-                          cursor: 'pointer',
-                          color: favoriteIds.has(movie._id) ? 'gold' : '#aaa',
-                          float: 'right'
-                        }}
-                        title={favoriteIds.has(movie._id) ? 'Unfavorite' : 'Favorite'}
-                      >
-                        ★
-                      </button>
-                    )}
-                    <p>
-                      <small>
-                        <b>Release Year: </b> {movie.release}
-                      </small>
-                    </p>
-                    <p>
-                      <small>
-                        <b>IMDb Rating: </b> {movie.rating}
-                      </small>
-                    </p>
-                    <p className="card-bio">
-                      <small>
-                        <b>Movie Bio: </b> {movie.bio}
-                      </small>
-                    </p>
+                <div className="movie-card-wrapper" key={movie._id}>
+                  <div className="movie-card-y2k">
+                    <div className="movie-card-image-container">
+                      <img
+                        src={movie.image}
+                        className="movie-card-image"
+                        alt={movie.name}
+                      />
+                      {user && (
+                        <button
+                          aria-label="Toggle Favorite"
+                          onClick={() => toggleFavorite.mutate(movie._id)}
+                          className={`favorite-btn-y2k ${favoriteIds.has(movie._id) ? 'is-favorite' : ''}`}
+                          title={favoriteIds.has(movie._id) ? 'Unfavorite' : 'Favorite'}
+                        >
+                          ★
+                        </button>
+                      )}
+                    </div>
+                    <div className="movie-card-content">
+                      <h3 className="movie-card-title">{movie.name}</h3>
+                      <div className="movie-card-info">
+                        <span className="movie-card-year">({movie.release})</span>
+                        {movie.rating && (
+                          <div className="movie-card-rating">
+                            <span className="rating-star">★</span>
+                            <span>{movie.rating}</span>
+                          </div>
+                        )}
+                      </div>
+                      <p className="movie-card-bio">{movie.bio}</p>
+                    </div>
                   </div>
                 </div>
               ))
             ) : (
-              <h1>No results found!</h1>
+              <div className="no-results">No Movies Found!</div>
             )}
           </Slider>
-        )}
-      </div>
-    </>
+        </div>
+      )}
+    </div>
   )
 }
 

@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { Navbar, Nav, NavItem, Container } from 'react-bootstrap'
 import { UserContext } from '../context/userContext'
 import api from '../api'
+import '../styles/navbar.css'
 
 function LogoutButton() {
   const { setUser } = useContext(UserContext)
@@ -12,13 +13,13 @@ function LogoutButton() {
     try {
       await api.post('/api/auth/logout')
       setUser(null)
-      navigate('/login') // Navigate to the login page
+      navigate('/login')
     } catch (error) {
       console.log(error)
     }
   }
 
-  return <button onClick={handleLogout}>Logout</button>
+  return <button className="logout-btn-y2k" onClick={handleLogout}>Logout</button>
 }
 
 function NavBar() {
@@ -32,16 +33,16 @@ function NavBar() {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar className="navbar-y2k" expand="lg">
         <Container>
           <Navbar.Brand
             className="logo"
-            style={{ fontSize: '1.8rem', marginLeft: '-10px' }}
             href="/"
           >
             <img
               src={'/images/logo.png'}
               alt="Music & Movies"
+              className="navbar-logo-img"
               style={{ width: '300px', height: '80px' }}
             />
           </Navbar.Brand>
@@ -74,6 +75,13 @@ function NavBar() {
                 <NavItem>
                   <NavLink style={Styles} className="nav-link" to="/register">
                     Register
+                  </NavLink>
+                </NavItem>
+              )}
+              {user && (
+                <NavItem>
+                  <NavLink style={Styles} className="nav-link" to="/dashboard">
+                    Dashboard
                   </NavLink>
                 </NavItem>
               )}

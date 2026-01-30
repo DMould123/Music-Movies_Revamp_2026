@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Card } from 'react-bootstrap'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
+import '../styles/albums.css'
+import '../styles/retro.css'
 
 export default function Albums() {
   const [albums, setAlbums] = useState([])
@@ -55,59 +56,59 @@ export default function Albums() {
     ]
   }
   return (
-    <>
-      <div className="Albums">
-        <Slider {...settings} className="Albums_container--inner">
+    <div className="albums-wrapper">
+      <div className="retro-background">
+        <div className="y2k-grid"></div>
+        <div className="grid-dots"></div>
+      </div>
+
+      <div className="albums-header">
+        <h1 className="albums-title">VINYL VAULT</h1>
+        <p className="albums-subtitle">Classic Albums Collection</p>
+      </div>
+
+      <div className="albums-slider-container">
+        <Slider {...settings}>
           {albums.map((album) => (
-            <Card className="cardClass" key={album.AlbumId}>
-              <div style={{ textAlign: 'center', padding: '0.5rem' }}>
-                <Card.Img
-                  src={'/images/' + album.AlbumArtwork}
-                  className="card-image"
-                  style={{
-                    width: '100%',
-                    maxWidth: '520px',
-                    height: 'auto',
-                    aspectRatio: '1 / 1',
-                    objectFit: 'cover',
-                    borderRadius: '12px',
-                    margin: '0 auto'
-                  }}
-                />
-              </div>
-              <Card.Body>
-                <div className="card-text-body">
-                  <Card.Title>
-                    <b>{album.AlbumArtist} - </b> {album.AlbumTitle}
+            <div className="album-card-y2k" key={album.AlbumId}>
+              <Card className="album-card-inner">
+                <div className="album-image-container">
+                  <Card.Img
+                    src={'/images/' + album.AlbumArtwork}
+                    className="album-card-image"
+                    alt={album.AlbumTitle}
+                  />
+                </div>
+                <Card.Body className="album-card-body">
+                  <Card.Title className="album-card-title">
+                    <b>{album.AlbumArtist}</b> - {album.AlbumTitle}
                   </Card.Title>
                   <Popup
-                    trigger={<button> Album Details </button>}
-                    position="right"
+                    trigger={<button className="album-details-btn">Album Details</button>}
+                    position="center center"
+                    modal
                   >
                     <div>
                       <p>
-                        <b>Release Year: </b>
-                        {album.AlbumReleaseYear}
+                        <b>Release Year:</b> {album.AlbumReleaseYear}
                       </p>
                       <p>
-                        <b>Length: </b>
-                        {album.AlbumLength}
+                        <b>Length:</b> {album.AlbumLength}
                       </p>
+                      <p><b>Tracklisting:</b></p>
                       <ol>
-                        {album.AlbumTracklisting.map((track) => (
-                          <li key={track}>{track}</li>
+                        {album.AlbumTracklisting.map((track, index) => (
+                          <li key={index}>{track}</li>
                         ))}
                       </ol>
                     </div>
                   </Popup>
-                  <Card.Text></Card.Text>
-                  <Card.Text className="card-description"></Card.Text>
-                </div>
-              </Card.Body>
-            </Card>
+                </Card.Body>
+              </Card>
+            </div>
           ))}
         </Slider>
       </div>
-    </>
+    </div>
   )
 }
