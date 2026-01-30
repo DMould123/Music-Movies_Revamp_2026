@@ -11,6 +11,7 @@ import '../styles/home.css'
 import '../styles/retro.css'
 
 function Home(props) {
+  const sliderRef = React.useRef(null)
   const [name, setName] = useState('')
   const [sortOrder, setSortOrder] = useState('default')
   const {
@@ -63,9 +64,17 @@ function Home(props) {
     setName(keyword)
     const filtered = applyFiltersAndSort(moviesData, keyword, sortOrder)
     setMovies(filtered)
+    // Reset slider to first slide
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(0)
+    }
   }
 
   const handleSort = (e) => {
+    // Reset slider to first slide
+    if (sliderRef.current) {
+      sliderRef.current.slickGoTo(0)
+    }
     const newSort = e.target.value
     setSortOrder(newSort)
     const filtered = applyFiltersAndSort(moviesData, name, newSort)
@@ -152,7 +161,7 @@ function Home(props) {
           onChange={handleSort}
           className="sort-select"
         >
-          <option value="default">Sort By Release Date</option>
+          <option value="default">Default Order</option>
           <option value="oldest">Oldest to Newest</option>
           <option value="newest">Newest to Oldest</option>
           <option value="highest-rating">Highest Rating</option>
