@@ -21,7 +21,7 @@ export default function Albums() {
   }, [])
   const settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -42,7 +42,8 @@ export default function Albums() {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 0
+          initialSlide: 0,
+          infinite: true
         }
       },
       {
@@ -50,7 +51,8 @@ export default function Albums() {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 0
+          initialSlide: 0,
+          infinite: true
         }
       }
     ]

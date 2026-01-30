@@ -337,43 +337,159 @@
   }
 }
 
+/* Tablet responsiveness (768px and below) */
 @media (max-width: 768px) {
-  .home-wrapper {
-    padding: 80px 15px 50px;
+  .movies-container {
+    padding: 40px 16px;
   }
   
-  .home-title {
-    font-size: 2.5rem;
+  .movies-header {
+    margin-bottom: 30px;
   }
   
-  .home-subtitle {
-    font-size: 1rem;
+  .movies-title {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+  
+  .search-section {
+    max-width: 100%;
+    margin-bottom: 30px;
   }
   
   .movie-search-input {
+    font-size: 0.95rem;
+    padding: 12px 18px;
+  }
+  
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .favorite-btn-y2k {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    top: 15px;
+    right: 15px;
+  }
+  
+  .movie-card-content {
+    padding: 16px;
+  }
+  
+  .movie-card-title {
     font-size: 1rem;
-    padding: 14px 20px;
+    margin-bottom: 10px;
+  }
+  
+  .movie-card-info {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  
+  .movie-card-year {
+    font-size: 0.9rem;
+  }
+  
+  .movie-card-rating {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+  }
+  
+  .movie-card-bio {
+    font-size: 0.8rem;
+    margin-top: 8px;
   }
   
   .movies-slider-container .slick-prev,
   .movies-slider-container .slick-next {
-    display: none !important;
+    display: block !important;
+  }
+}
+
+/* Mobile responsiveness (480px and below) */
+@media (max-width: 480px) {
+  .movies-container {
+    padding: 20px 12px;
+  }
+  
+  .movies-header {
+    margin-bottom: 20px;
+  }
+  
+  .movies-title {
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+  }
+  
+  .search-section {
+    margin-bottom: 20px;
+  }
+  
+  .movie-search-input {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+  
+  .movie-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
   
   .favorite-btn-y2k {
     width: 40px;
     height: 40px;
-    font-size: 20px;
+    font-size: 18px;
+    top: 12px;
+    right: 12px;
   }
-}
-
-@media (max-width: 480px) {
-  .home-title {
-    font-size: 2rem;
-    letter-spacing: 2px;
+  
+  .movie-card-content {
+    padding: 14px;
   }
   
   .movie-card-title {
+    font-size: 0.95rem;
+    min-height: 2.4em;
+  }
+  
+  .movie-card-info {
+    gap: 4px;
+    margin-bottom: 4px;
+  }
+  
+  .movie-card-year {
+    font-size: 0.85rem;
+  }
+  
+  .movie-card-rating {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+  
+  .rating-star {
+    font-size: 1rem;
+  }
+  
+  .movie-card-bio {
+    font-size: 0.75rem;
+    margin-top: 6px;
+  }
+  
+  .loading-message {
+    padding: 40px 16px;
+    font-size: 1rem;
+  }
+  
+  .error-message {
+    padding: 40px 16px;
+    font-size: 1.1rem;
+  }
+  
+  .no-results {
+    padding: 60px 16px;
     font-size: 1.2rem;
   }
 }

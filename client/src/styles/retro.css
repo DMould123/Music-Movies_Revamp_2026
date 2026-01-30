@@ -620,3 +620,179 @@
     opacity: 0.6;
   }
 }
+
+/* Tablet responsiveness (768px and below) */
+@media (max-width: 768px) {
+  .retro-page {
+    padding: 16px;
+  }
+  
+  .retro-container {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .future-card {
+    padding: 40px 28px;
+    border-radius: 20px;
+  }
+  
+  .logo-container {
+    margin-bottom: 24px;
+    padding-top: 16px;
+  }
+  
+  .card-logo {
+    max-width: 180px;
+  }
+  
+  .chrome-header {
+    margin-bottom: 32px;
+  }
+  
+  .y2k-title {
+    font-size: 1.7rem;
+    margin-bottom: 6px;
+  }
+  
+  .retro-subtitle {
+    font-size: 12px;
+  }
+  
+  .retro-field {
+    margin-bottom: 24px;
+  }
+  
+  .retro-field input,
+  .retro-field textarea {
+    padding: 16px 14px;
+    font-size: 15px;
+  }
+  
+  .retro-field label {
+    font-size: 13px;
+    left: 14px;
+  }
+  
+  .retro-field:has(textarea) label {
+    top: 20px;
+  }
+  
+  .retro-button {
+    min-height: 52px;
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+  
+  .floating-orbs {
+    opacity: 0.4;
+  }
+}
+
+/* Mobile responsiveness (480px and below) */
+@media (max-width: 480px) {
+  .retro-page {
+    padding: 12px;
+    min-height: 100vh;
+  }
+  
+  .retro-container {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .future-card {
+    padding: 32px 20px;
+    border-radius: 16px;
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+    padding-top: 12px;
+  }
+  
+  .card-logo {
+    max-width: 140px;
+  }
+  
+  .chrome-header {
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  
+  .y2k-title {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+  
+  .retro-subtitle {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  
+  .retro-field {
+    margin-bottom: 20px;
+  }
+  
+  .retro-field input,
+  .retro-field textarea {
+    padding: 14px 12px;
+    font-size: 16px;
+  }
+  
+  .retro-field:has(.retro-toggle) input {
+    padding-right: 50px;
+  }
+  
+  .retro-field label {
+    font-size: 12px;
+    left: 12px;
+  }
+  
+  .retro-field:has(textarea) label {
+    top: 18px;
+  }
+  
+  .retro-field input:focus + label,
+  .retro-field input:not(:placeholder-shown) + label,
+  .retro-field textarea:focus + label,
+  .retro-field textarea:not(:placeholder-shown) + label {
+    top: 6px;
+    font-size: 10px;
+  }
+  
+  .retro-toggle {
+    right: 10px;
+    padding: 6px;
+    font-size: 16px;
+  }
+  
+  .retro-button {
+    min-height: 48px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+  
+  .button-text {
+    font-weight: 800;
+  }
+  
+  .retro-error {
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  
+  .floating-orbs {
+    opacity: 0.3;
+  }
+  
+  .grid-dots {
+    opacity: 0.2;
+  }
+  
+  .scan-line {
+    opacity: 0.4;
+  }
+}

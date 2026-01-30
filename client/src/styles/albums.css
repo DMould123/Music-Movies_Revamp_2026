@@ -43,6 +43,16 @@
   z-index: 1;
 }
 
+/* Ensure first slide is visible */
+.albums-slider-container .slick-slide {
+  opacity: 1;
+  visibility: visible;
+}
+
+.albums-slider-container .slick-current {
+  display: block !important;
+}
+
 /* Album Card */
 .album-card-y2k {
   padding: 15px;
@@ -283,18 +293,141 @@
   }
 }
 
+/* Tablet responsiveness (768px and below) */
+@media (max-width: 768px) {
+  .albums-wrapper {
+    padding: 80px 16px 40px;
+  }
+  
+  .albums-header {
+    margin-bottom: 40px;
+  }
+  
+  .albums-title {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+  }
+  
+  .albums-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .album-card-y2k {
+    padding: 12px;
+  }
+  
+  .album-image-container {
+    padding: 16px 16px 8px;
+  }
+  
+  .album-card-image {
+    max-width: 400px;
+  }
+  
+  .album-card-body {
+    padding: 16px;
+  }
+  
+  .album-card-title {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+  }
+  
+  .album-details-btn {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .popup-content {
+    max-width: 85% !important;
+    padding: 24px !important;
+  }
+  
+  .popup-title {
+    font-size: 1.4rem;
+  }
+  
+  .popup-description {
+    font-size: 0.95rem;
+  }
+  
+  .popup-footer {
+    gap: 12px;
+  }
+}
+
+/* Mobile responsiveness (480px and below) */
 @media (max-width: 480px) {
+  .albums-wrapper {
+    padding: 60px 12px 30px;
+  }
+  
+  .albums-header {
+    margin-bottom: 30px;
+  }
+  
   .albums-title {
     font-size: 2rem;
     letter-spacing: 2px;
   }
   
+  .albums-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .album-card-y2k {
+    padding: 10px;
+  }
+  
+  .album-image-container {
+    padding: 14px 14px 6px;
+  }
+  
+  .album-card-image {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+  
+  .album-card-body {
+    padding: 14px;
+  }
+  
   .album-card-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+  
+  .album-card-title b {
+    display: block;
   }
   
   .album-details-btn {
     font-size: 0.85rem;
     padding: 10px 20px;
+    width: 100%;
+  }
+  
+  .popup-content {
+    max-width: 90% !important;
+    padding: 20px !important;
+  }
+  
+  .popup-title {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  
+  .popup-description {
+    font-size: 0.9rem;
+    max-height: 200px;
+  }
+  
+  .popup-footer {
+    gap: 10px;
+    flex-direction: column;
+  }
+  
+  .popup-footer button {
+    width: 100%;
   }
 }

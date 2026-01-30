@@ -170,6 +170,7 @@
     margin: 5px 0;
     border-radius: 8px;
     text-align: center;
+    font-size: 1rem;
   }
   
   .navbar-y2k .nav-link:hover {
@@ -179,6 +180,25 @@
   .logout-btn-y2k {
     width: 100%;
     margin: 10px 0 0 0;
+    padding: 12px 20px;
+  }
+}
+
+/* Tablet screens */
+@media (max-width: 768px) {
+  .navbar-y2k {
+    padding: 10px 0;
+  }
+  
+  .navbar-y2k .nav-link {
+    font-size: 0.95rem;
+    padding: 10px 14px !important;
+    margin: 0 3px;
+  }
+  
+  .navbar-logo-img {
+    max-width: 180px !important;
+    height: auto !important;
   }
 }
 
@@ -188,8 +208,42 @@
     padding: 8px 0;
   }
   
+  .navbar-y2k .nav-link {
+    font-size: 0.9rem;
+    padding: 10px 12px !important;
+  }
+  
+  .logout-btn-y2k {
+    font-size: 0.85rem;
+    padding: 10px 18px;
+  }
+  
   .navbar-logo-img {
-    max-width: 200px !important;
+    max-width: 160px !important;
+    height: auto !important;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .navbar-y2k {
+    padding: 6px 0;
+  }
+  
+  .navbar-y2k .nav-link {
+    font-size: 0.85rem;
+    padding: 8px 10px !important;
+    letter-spacing: 0.5px;
+  }
+  
+  .logout-btn-y2k {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    margin-left: 5px;
+  }
+  
+  .navbar-logo-img {
+    max-width: 140px !important;
     height: auto !important;
   }
 }
