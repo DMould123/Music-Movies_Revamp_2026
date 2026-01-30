@@ -5,6 +5,11 @@ import { UserContext } from '../context/userContext'
 import api from '../api'
 import '../styles/navbar.css'
 
+const adminEmails = (process.env.REACT_APP_ADMIN_EMAILS || 'david.mould123@yahoo.com')
+  .split(',')
+  .map((email) => email.trim().toLowerCase())
+  .filter(Boolean)
+
 function LogoutButton() {
   const { setUser } = useContext(UserContext)
   const navigate = useNavigate()
@@ -25,6 +30,7 @@ function LogoutButton() {
 function NavBar() {
   const { user } = useContext(UserContext)
   const [expanded, setExpanded] = useState(false)
+  const isAdmin = user?.email && adminEmails.includes(user.email.toLowerCase())
   
   const Styles = ({ isActive }) => {
     return {
@@ -121,7 +127,7 @@ function NavBar() {
                   </NavLink>
                 </NavItem>
               )}
-              {user && (
+              {user && isAdmin && (
                 <NavItem>
                   <NavLink 
                     style={Styles} 

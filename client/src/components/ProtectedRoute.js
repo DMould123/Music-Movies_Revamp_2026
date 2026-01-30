@@ -2,6 +2,13 @@ import React, { useContext } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 import { UserContext } from '../context/userContext'
 
+const adminEmails = (process.env.REACT_APP_ADMIN_EMAILS || 'david.mould123@yahoo.com')
+  .split(',')
+  .map((email) => email.trim().toLowerCase())
+  .filter(Boolean)
+
+const isAdminUser = (user) => user?.email && adminEmails.includes(user.email.toLowerCase())
+
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(UserContext)
   const location = useLocation()
@@ -12,6 +19,10 @@ const ProtectedRoute = ({ children }) => {
 
   if (!user) {
     return <Navigate to="/login" replace state={{ from: location }} />
+  }
+
+  if (!isAdminUser(user)) {
+    return <Navigate to="/" replace />
   }
 
   return children
