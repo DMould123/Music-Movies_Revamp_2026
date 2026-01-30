@@ -25,16 +25,6 @@ const Footer = () => {
             <FaLinkedin />
           </a>
           <a
-            href="https://x.com/dm12_51?s=21"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-link x-twitter"
-            title="X (formerly Twitter)"
-            aria-label="X"
-          >
-            <FaTwitter />
-          </a>
-          <a
             href="https://github.com/DMould123"
             target="_blank"
             rel="noopener noreferrer"
@@ -45,7 +35,7 @@ const Footer = () => {
             <FaGithub />
           </a>
           <a
-            href="https://x.com"
+            href="https://x.com/dm12_51?s=21"
             target="_blank"
             rel="noopener noreferrer"
             className="social-link x-twitter"
