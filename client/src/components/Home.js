@@ -35,13 +35,18 @@ function Home(props) {
   const applyFiltersAndSort = (data, keyword, sort) => {
     let results = data || []
 
-    // Apply search filter
+    const normalizeForSearch = (value) => {
+      if (!value) return ''
+      const normalized = value.trim().toLowerCase()
+      return normalized.startsWith('the ') ? normalized.replace(/^the\s+/, '') : normalized
+    }
+
+    // Apply search filter (ignore leading "the")
     if (keyword !== '') {
+      const searchTerm = normalizeForSearch(keyword)
       results = results.filter((movie) => {
-        return (
-          movie.name &&
-          movie.name.toLowerCase().startsWith(keyword.toLowerCase())
-        )
+        const title = normalizeForSearch(movie.name)
+        return title.startsWith(searchTerm)
       })
     }
 
