@@ -1,0 +1,147 @@
+/* Movie & Card Skeleton Loaders */
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: smooth-fade-in 0.3s ease-in;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 280px;
+  background: linear-gradient(
+    90deg,
+    rgba(220, 20, 60, 0.2) 0%,
+    rgba(255, 215, 0, 0.3) 50%,
+    rgba(220, 20, 60, 0.2) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 8px;
+  animation: skeleton-loading 1.5s infinite, pulse-glow 1.5s ease-in-out infinite;
+}
+
+.skeleton-body {
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.skeleton-title {
+  height: 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(220, 20, 60, 0.15) 0%,
+    rgba(255, 215, 0, 0.25) 50%,
+    rgba(220, 20, 60, 0.15) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: skeleton-loading 1.5s infinite, pulse-glow 1.5s ease-in-out infinite;
+}
+
+.skeleton-text {
+  height: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(220, 20, 60, 0.15) 0%,
+    rgba(255, 215, 0, 0.25) 50%,
+    rgba(220, 20, 60, 0.15) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 4px;
+  animation: skeleton-loading 1.5s infinite, pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* Album-specific skeleton */
+.skeleton-album {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(220, 20, 60, 0.2);
+  animation: smooth-fade-in 0.3s ease-in;
+}
+
+.skeleton-album .skeleton-image {
+  height: 200px;
+  margin: 0 -1rem 0 -1rem;
+  border-radius: 8px 8px 0 0;
+}
+
+.skeleton-album .skeleton-title {
+  height: 18px;
+  width: 80%;
+}
+
+.skeleton-album .skeleton-button {
+  height: 32px;
+  margin-top: 0.5rem;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 215, 0, 0.2) 0%,
+    rgba(255, 215, 0, 0.4) 50%,
+    rgba(255, 215, 0, 0.2) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: 6px;
+  animation: skeleton-loading 1.5s infinite, pulse-glow 1.5s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.1);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@keyframes smooth-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .skeleton-image {
+    height: 200px;
+  }
+
+  .skeleton-album .skeleton-image {
+    height: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .skeleton-image {
+    height: 160px;
+  }
+
+  .skeleton-album .skeleton-image {
+    height: 120px;
+  }
+}

@@ -5,18 +5,26 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css'
+import SkeletonAlbumCard from './SkeletonAlbumCard'
 import '../styles/albums.css'
 import '../styles/retro.css'
 
 export default function Albums() {
   const [albums, setAlbums] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    setIsLoading(true)
     fetch('/albums.json')
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
         setAlbums(data.albums)
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        console.error('Error loading albums:', error)
+        setIsLoading(false)
       })
   }, [])
   const settings = {
@@ -71,7 +79,12 @@ export default function Albums() {
 
       <div className="albums-slider-container">
         <Slider {...settings}>
-          {albums.map((album) => (
+          {isLoading ? (
+            [1, 2, 3].map((i) => (
+              <SkeletonAlbumCard key={i} />
+            ))
+          ) : albums.length > 0 ? (
+            albums.map((album) => (
             <div className="album-card-y2k" key={album.AlbumId}>
               <Card className="album-card-inner">
                 <div className="album-image-container">
@@ -108,7 +121,12 @@ export default function Albums() {
                 </Card.Body>
               </Card>
             </div>
-          ))}
+            ))
+          ) : (
+            <div style={{ textAlign: 'center', color: 'rgba(255, 255, 255, 0.8)', padding: '40px' }}>
+              <p>No albums available</p>
+            </div>
+          )}
         </Slider>
       </div>
     </div>

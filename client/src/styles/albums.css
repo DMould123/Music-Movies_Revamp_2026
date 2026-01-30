@@ -1,5 +1,42 @@
 /* Albums Page - Retro Y2K Styling */
 
+/* Skeleton Loading Animation */
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.skeleton-album {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+.skeleton-image {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  aspect-ratio: 1 / 1;
+}
+
+.skeleton-text {
+  display: block;
+  opacity: 0.7;
+}
+
+.skeleton-title {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.skeleton-button {
+  width: 100%;
+  margin-top: 12px;
+}
+
 .albums-wrapper {
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);

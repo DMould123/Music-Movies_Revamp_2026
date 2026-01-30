@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import api from '../../api'
 import { UserContext } from '../../context/userContext'
 import { Link } from 'react-router-dom'
+import SkeletonMovieCard from '../SkeletonMovieCard'
 
 const Favorites = () => {
   const { user } = useContext(UserContext)
@@ -16,7 +17,18 @@ const Favorites = () => {
   })
 
   if (!user) return <div style={{ padding: '2rem' }}>Login to see favorites.</div>
-  if (isLoading) return <div className="loading-spinner">Loading...</div>
+  if (isLoading) {
+    return (
+      <div style={{ maxWidth: 1000, margin: '2rem auto' }}>
+        <h2>Your Favorites</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1rem' }}>
+          {[...Array(6)].map((_, i) => (
+            <SkeletonMovieCard key={i} />
+          ))}
+        </div>
+      </div>
+    )
+  }
   if (isError) return <div style={{ color: 'red' }}>Failed to load favorites.</div>
 
   return (
