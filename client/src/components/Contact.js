@@ -65,6 +65,13 @@ const Contact = () => {
 
       <div className="retro-container">
         <div className="future-card">
+          <div className="logo-container">
+            <img
+              src="/images/logo.png"
+              alt="Music & Movies Logo"
+              className="card-logo"
+            />
+          </div>
           <div className="chrome-header">
             <h1 className="y2k-title">YOUR REVIEW</h1>
             <p className="retro-subtitle">Share Your Experience</p>

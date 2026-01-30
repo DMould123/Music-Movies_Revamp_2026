@@ -183,6 +183,25 @@
 }
 
 /* Chrome Header */
+.logo-container {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-top: 20px;
+}
+
+.card-logo {
+  max-width: 200px;
+  height: auto;
+  width: 100%;
+  filter: drop-shadow(0 4px 12px rgba(255, 215, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.card-logo:hover {
+  filter: drop-shadow(0 6px 20px rgba(255, 215, 0, 0.5));
+  transform: scale(1.02);
+}
+
 .chrome-header {
   text-align: center;
   margin-bottom: 40px;
