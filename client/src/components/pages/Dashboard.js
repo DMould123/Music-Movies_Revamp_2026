@@ -224,15 +224,40 @@ const Dashboard = () => {
                         className="edit-input"
                         placeholder="Year"
                       />
+                      <input
+                        type="text"
+                        defaultValue={movie.image}
+                        id={`edit-image-${movie._id}`}
+                        className="edit-input"
+                        placeholder="Image URL"
+                      />
+                      <input
+                        type="number"
+                        step="0.1"
+                        defaultValue={movie.rating}
+                        id={`edit-rating-${movie._id}`}
+                        className="edit-input"
+                        placeholder="Rating (0-10)"
+                      />
+                      <textarea
+                        defaultValue={movie.bio}
+                        id={`edit-bio-${movie._id}`}
+                        className="edit-input edit-textarea"
+                        placeholder="Movie description"
+                        rows="3"
+                      />
                       <div className="edit-actions">
                         <button
                           className="save-btn"
                           onClick={() => {
                             const name = document.getElementById(`edit-name-${movie._id}`).value
                             const release = Number(document.getElementById(`edit-release-${movie._id}`).value)
+                            const image = document.getElementById(`edit-image-${movie._id}`).value
+                            const rating = Number(document.getElementById(`edit-rating-${movie._id}`).value)
+                            const bio = document.getElementById(`edit-bio-${movie._id}`).value
                             updateMutation.mutate({
                               id: movie._id,
-                              data: { name, release, image: movie.image, rating: movie.rating, bio: movie.bio }
+                              data: { name, release, image, rating, bio }
                             })
                           }}
                         >

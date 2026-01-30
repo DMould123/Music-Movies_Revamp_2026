@@ -275,6 +275,12 @@
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
+.edit-textarea {
+  min-height: 80px;
+  resize: vertical;
+  font-family: inherit;
+}
+
 .edit-actions {
   display: flex;
   gap: 10px;
