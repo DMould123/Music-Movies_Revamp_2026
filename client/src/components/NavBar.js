@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Navbar, Nav, NavItem, Container } from 'react-bootstrap'
 import { UserContext } from '../context/userContext'
@@ -24,6 +24,8 @@ function LogoutButton() {
 
 function NavBar() {
   const { user } = useContext(UserContext)
+  const [expanded, setExpanded] = useState(false)
+  
   const Styles = ({ isActive }) => {
     return {
       fontWeight: isActive ? 'bold' : 'normal',
@@ -31,9 +33,17 @@ function NavBar() {
     }
   }
 
+  const handleToggle = () => {
+    setExpanded(!expanded)
+  }
+
+  const handleNavLinkClick = () => {
+    setExpanded(false)
+  }
+
   return (
     <div>
-      <Navbar className="navbar-y2k" expand="lg">
+      <Navbar className="navbar-y2k" expand="lg" expanded={expanded} onToggle={setExpanded}>
         <Container>
           <Navbar.Brand
             className="logo"
@@ -46,48 +56,91 @@ function NavBar() {
               style={{ width: '300px', height: '80px' }}
             />
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle 
+            aria-controls="basic-navbar-nav" 
+            className={`navbar-toggler-custom ${expanded ? 'active' : ''}`}
+            onClick={handleToggle}
+          >
+            <span className="toggler-line line-1"></span>
+            <span className="toggler-line line-2"></span>
+            <span className="toggler-line line-3"></span>
+          </Navbar.Toggle>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
               <NavItem>
-                <NavLink style={Styles} className="nav-link" to="/">
+                <NavLink 
+                  style={Styles} 
+                  className="nav-link" 
+                  to="/"
+                  onClick={handleNavLinkClick}
+                >
                   Home
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink style={Styles} className="nav-link" to="/albums">
+                <NavLink 
+                  style={Styles} 
+                  className="nav-link" 
+                  to="/albums"
+                  onClick={handleNavLinkClick}
+                >
                   Albums
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink style={Styles} className="nav-link" to="/contact">
+                <NavLink 
+                  style={Styles} 
+                  className="nav-link" 
+                  to="/contact"
+                  onClick={handleNavLinkClick}
+                >
                   Contact
                 </NavLink>
               </NavItem>
               {!user && (
                 <NavItem>
-                  <NavLink style={Styles} className="nav-link" to="/login">
+                  <NavLink 
+                    style={Styles} 
+                    className="nav-link" 
+                    to="/login"
+                    onClick={handleNavLinkClick}
+                  >
                     Login
                   </NavLink>
                 </NavItem>
               )}
               {!user && (
                 <NavItem>
-                  <NavLink style={Styles} className="nav-link" to="/register">
+                  <NavLink 
+                    style={Styles} 
+                    className="nav-link" 
+                    to="/register"
+                    onClick={handleNavLinkClick}
+                  >
                     Register
                   </NavLink>
                 </NavItem>
               )}
               {user && (
                 <NavItem>
-                  <NavLink style={Styles} className="nav-link" to="/dashboard">
+                  <NavLink 
+                    style={Styles} 
+                    className="nav-link" 
+                    to="/dashboard"
+                    onClick={handleNavLinkClick}
+                  >
                     Dashboard
                   </NavLink>
                 </NavItem>
               )}
               {user && (
                 <NavItem>
-                  <NavLink style={Styles} className="nav-link" to="/favorites">
+                  <NavLink 
+                    style={Styles} 
+                    className="nav-link" 
+                    to="/favorites"
+                    onClick={handleNavLinkClick}
+                  >
                     Favorites
                   </NavLink>
                 </NavItem>

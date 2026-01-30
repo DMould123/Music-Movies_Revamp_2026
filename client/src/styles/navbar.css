@@ -150,6 +150,51 @@
   box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
 }
 
+/* Custom Hamburger Menu */
+.navbar-toggler-custom {
+  border: 2px solid rgba(255, 215, 0, 0.5);
+  padding: 8px 12px;
+  transition: all 0.3s ease;
+  background: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.navbar-toggler-custom:hover {
+  border-color: #FFD700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.toggler-line {
+  width: 25px;
+  height: 3px;
+  background-color: rgba(255, 215, 0, 0.8);
+  margin: 5px 0;
+  transition: all 0.3s ease;
+  display: block;
+  border-radius: 2px;
+}
+
+/* Transform to X when active */
+.navbar-toggler-custom.active .line-1 {
+  transform: rotate(45deg) translate(10px, 10px);
+}
+
+.navbar-toggler-custom.active .line-2 {
+  opacity: 0;
+}
+
+.navbar-toggler-custom.active .line-3 {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.navbar-toggler-custom.active:hover {
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
 .navbar-y2k .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 215, 0, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
