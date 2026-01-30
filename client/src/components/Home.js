@@ -162,7 +162,7 @@ function Home(props) {
                     <div className="movie-card-content">
                       <h3 className="movie-card-title">{movie.name}</h3>
                       <div className="movie-card-info">
-                        <span className="movie-card-year">({movie.release})</span>
+                        <span className="movie-card-year">{movie.release}</span>
                         {movie.rating && (
                           <div className="movie-card-rating">
                             <span className="rating-star">★</span>
