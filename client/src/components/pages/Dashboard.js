@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
+import confetti from 'canvas-confetti'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-hot-toast'
 import { UserContext } from '../../context/userContext'
 import api from '../../api'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
@@ -14,6 +16,29 @@ const Dashboard = () => {
   const navigate = useNavigate()
   const queryClient = useQueryClient()
   const [editingId, setEditingId] = useState(null)
+  const fireConfetti = () => {
+    const colors = ['#DC143C', '#FFD700', '#9400D3', '#00E5FF', '#FFFFFF']
+    confetti({
+      particleCount: 160,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors
+    })
+    confetti({
+      particleCount: 90,
+      spread: 120,
+      origin: { y: 0.55 },
+      scalar: 0.9,
+      colors
+    })
+    confetti({
+      particleCount: 120,
+      spread: 160,
+      origin: { y: 0.5 },
+      scalar: 0.8,
+      colors
+    })
+  }
   const { data: movies = [], isLoading } = useQuery({
     queryKey: ['movies'],
     queryFn: async () => {
@@ -49,7 +74,9 @@ const Dashboard = () => {
 
   const handleAddMovie = async (data) => {
     try {
-      await addMutation.mutateAsync(data)
+      const created = await addMutation.mutateAsync(data)
+      fireConfetti()
+      toast.success(`Added "${created?.name || 'movie'}" to your collection`)
       reset()
       setIsAddingMovie(false)
     } catch (error) {
@@ -58,11 +85,13 @@ const Dashboard = () => {
   }
 
   const deleteMutation = useMutation({
-    mutationFn: async (movieId) => {
-      await api.delete(`/api/movies/${movieId}`)
+    mutationFn: async ({ id }) => {
+      await api.delete(`/api/movies/${id}`)
     },
-    onSuccess: () =>
+    onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['movies'] })
+      toast.success(`Deleted "${variables?.name || 'movie'}"`)
+    }
   })
 
   const updateMutation = useMutation({
@@ -70,15 +99,16 @@ const Dashboard = () => {
       const { data: updated } = await api.put(`/api/movies/${id}`, data)
       return updated
     },
-    onSuccess: () => {
+    onSuccess: (updated) => {
       queryClient.invalidateQueries({ queryKey: ['movies'] })
       setEditingId(null)
+      toast.success(`Updated "${updated?.name || 'movie'}"`)
     }
   })
 
-  const handleDeleteMovie = async (movieId) => {
+  const handleDeleteMovie = async (movieId, movieName) => {
     try {
-      await deleteMutation.mutateAsync(movieId)
+      await deleteMutation.mutateAsync({ id: movieId, name: movieName })
     } catch (error) {
       console.error('An error occurred:', error)
     }
@@ -285,7 +315,7 @@ const Dashboard = () => {
                           <button className="edit-btn" onClick={() => setEditingId(movie._id)}>
                             Edit
                           </button>
-                          <button className="delete-btn" onClick={() => handleDeleteMovie(movie._id)}>
+                          <button className="delete-btn" onClick={() => handleDeleteMovie(movie._id, movie.name)}>
                             Delete
                           </button>
                         </div>
