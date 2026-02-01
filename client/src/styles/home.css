@@ -262,6 +262,18 @@
   text-shadow: none;
 }
 
+.movie-card-runtime {
+  background: linear-gradient(135deg, #00E5FF, #3F87FF);
+  color: #001018;
+  font-size: 0.95rem;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.35);
+}
+
 .movie-card-rating {
   display: inline-flex;
   align-items: center;

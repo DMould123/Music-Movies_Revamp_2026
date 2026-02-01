@@ -50,6 +50,7 @@ const Dashboard = () => {
   const schema = z.object({
     name: z.string().min(1, 'Required'),
     release: z.coerce.number().int().min(1888, 'Invalid year'),
+    runtime: z.string().optional(),
     image: z.string().url('Must be a URL'),
     rating: z.coerce.number().min(0).max(10),
     bio: z.string().min(1, 'Required')
@@ -191,6 +192,19 @@ const Dashboard = () => {
               <div className="retro-field">
                 <div className="field-chrome">
                   <input
+                    type="text"
+                    className="retro-input"
+                    placeholder="Runtime (e.g., 1h 54m)"
+                    {...register('runtime')}
+                  />
+                  <label className="retro-label">Runtime</label>
+                </div>
+                {errors.runtime && <span className="field-error">{errors.runtime.message}</span>}
+              </div>
+
+              <div className="retro-field">
+                <div className="field-chrome">
+                  <input
                     type="number"
                     step="0.1"
                     className="retro-input"
@@ -269,6 +283,13 @@ const Dashboard = () => {
                         className="edit-input"
                         placeholder="Rating (0-10)"
                       />
+                      <input
+                        type="text"
+                        defaultValue={movie.runtime}
+                        id={`edit-runtime-${movie._id}`}
+                        className="edit-input"
+                        placeholder="Runtime (e.g., 1h 54m)"
+                      />
                       <textarea
                         defaultValue={movie.bio}
                         id={`edit-bio-${movie._id}`}
@@ -284,10 +305,11 @@ const Dashboard = () => {
                             const release = Number(document.getElementById(`edit-release-${movie._id}`).value)
                             const image = document.getElementById(`edit-image-${movie._id}`).value
                             const rating = Number(document.getElementById(`edit-rating-${movie._id}`).value)
+                            const runtime = document.getElementById(`edit-runtime-${movie._id}`).value || undefined
                             const bio = document.getElementById(`edit-bio-${movie._id}`).value
                             updateMutation.mutate({
                               id: movie._id,
-                              data: { name, release, image, rating, bio }
+                              data: { name, release, image, rating, runtime, bio }
                             })
                           }}
                         >
@@ -303,6 +325,9 @@ const Dashboard = () => {
                       <div className="movie-info">
                         <h3 className="movie-title">{movie.name}</h3>
                         <p className="movie-year">{movie.release}</p>
+                        {movie.runtime && (
+                          <p className="movie-runtime">⏱ {movie.runtime}</p>
+                        )}
                         {movie.rating && (
                           <div className="movie-rating">
                             <span className="rating-star">★</span>

@@ -3,7 +3,9 @@ const Favorite = require('../models/favorite')
 const getFavorites = async (req, res, next) => {
   try {
     const favorites = await Favorite.find({ userId: req.user.id }).populate('movieId')
-    const movies = favorites.map((f) => ({ ...f.movieId.toObject(), _favoriteId: f._id }))
+    const movies = favorites
+      .filter((f) => f.movieId)
+      .map((f) => ({ ...f.movieId.toObject(), _favoriteId: f._id }))
     res.json(movies)
   } catch (err) {
     next(err)

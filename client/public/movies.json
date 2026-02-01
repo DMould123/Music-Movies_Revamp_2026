@@ -4,6 +4,7 @@
       "id": 1,
       "name": "The Goonies",
       "release": 1986,
+      "runtime": "1h 54m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769784069/movies%20and%20music/image-Picsart-AiImageEnhancer_12_kimefq.jpg",
       "rating": "7.7",
       "bio": "A group of young misfits called The Goonies discover an ancient map and set out on an adventure to find a legendary pirate's long-lost treasure."
@@ -12,6 +13,7 @@
       "id": 2,
       "name": "The Intouchables",
       "release": 2011,
+      "runtime": "1h 52m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769784780/movies%20and%20music/image-Picsart-AiImageEnhancer_13_ss2rr0.jpg",
       "rating": 8.5,
       "bio": "After he becomes a quadriplegic from a paragliding accident, an aristocrat hires a young man from the projects to be his caregiver."
@@ -20,6 +22,7 @@
       "id": 3,
       "name": "Bloodsport",
       "release": 1988,
+      "runtime": "1h 32m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1683732600/movies%20and%20music/Bloodsport_tvjo4f.jpg",
       "rating": 6.8,
       "bio": "Bloodsport follows Frank Dux, an American martial artist serving in the military, who decides to leave the army to compete in a martial arts tournament in Hong Kong where fights to the death can occur."
@@ -28,6 +31,7 @@
       "id": 4,
       "name": "Terminator 2: Judgment Day",
       "release": 1991,
+      "runtime": "2h 17m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769783853/movies%20and%20music/image-Picsart-AiImageEnhancer_9_ctinfv.jpg",
       "rating": 8.6,
       "bio": "A cyborg, identical to the one who failed to kill Sarah Connor, must now protect her ten-year-old son John from a more advanced and powerful cyborg."
@@ -36,6 +40,7 @@
       "id": 5,
       "name": "Up",
       "release": 2009,
+      "runtime": "1h 36m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769783786/movies%20and%20music/image-Picsart-AiImageEnhancer_8_o8kkb8.jpg",
       "rating": 8.3,
       "bio": "78-year-old Carl Fredricksen travels to Paradise Falls in his house equipped with balloons, inadvertently taking a young stowaway."
@@ -44,6 +49,7 @@
       "id": 6,
       "name": "The Silence of the Lambs",
       "release": 1991,
+      "runtime": "1h 58m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769783162/movies%20and%20music/image-Picsart-AiImageEnhancer_7_w1mvrl.jpg",
       "rating": "8.6",
       "bio": "A young F.B.I. cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims."
@@ -52,6 +58,7 @@
       "id": 7,
       "name": "Gremlins",
       "release": 1984,
+      "runtime": "1h 46m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769783106/movies%20and%20music/image-Picsart-AiImageEnhancer_6_wpnpgl.jpg",
       "rating": 7.3,
       "bio": "A young man inadvertently breaks three important rules concerning his new pet and unleashes a horde of malevolently mischievous monsters on a small town."
@@ -60,6 +67,7 @@
       "id": 8,
       "name": "Moonrise Kingdom",
       "release": 2012,
+      "runtime": "1h 34m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769783025/movies%20and%20music/image-Picsart-AiImageEnhancer_etraez.png",
       "rating": 7.8,
       "bio": "A pair of young lovers flee their New England town, which causes a local search party to fan out to find them."
@@ -68,6 +76,7 @@
       "id": 9,
       "name": "JoJo Rabbit",
       "release": 2019,
+      "runtime": "1h 48m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782986/movies%20and%20music/image-Picsart-AiImageEnhancer_5_gyynzc.jpg",
       "rating": 7.9,
       "bio": "A young German boy in the Hitler Youth, whose hero and imaginary friend is the country's dictator, is shocked to discover that his mother is hiding a Jewish girl in their home."
@@ -76,6 +85,7 @@
       "id": 10,
       "name": "Parasite",
       "release": 2019,
+      "runtime": "2h 12m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782878/movies%20and%20music/image-Picsart-AiImageEnhancer_1_omyvyt.png",
       "rating": "8.5",
       "bio": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan."
@@ -84,6 +94,7 @@
       "id": 11,
       "name": "The Shawshank Redemption",
       "release": 1994,
+      "runtime": "2h 22m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782812/movies%20and%20music/image-Picsart-AiImageEnhancer_4_nhp1fy.jpg",
       "rating": 9.3,
       "bio": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
@@ -92,6 +103,7 @@
       "id": 12,
       "name": "The Danish Girl",
       "release": 2015,
+      "runtime": "1h 59m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782774/movies%20and%20music/image-Picsart-AiImageEnhancer_3_diddqa.jpg",
       "rating": 7.1,
       "bio": "A fictitious love story loosely inspired by the lives of Danish artists Lili Elbe and Gerda Wegener. Lili and Gerda's marriage and work evolve as they navigate Lili's groundbreaking journey as a transgender pioneer."
@@ -100,6 +112,7 @@
       "id": 13,
       "name": "The Ring",
       "release": 2002,
+      "runtime": "1h 55m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782684/movies%20and%20music/image-Picsart-AiImageEnhancer_2_w1w0c4.jpg",
       "rating": 7.1,
       "bio": "A journalist must investigate a mysterious videotape which seems to cause the death of anyone one week to the day after they view it."
@@ -108,6 +121,7 @@
       "id": 14,
       "name": "Forrest Gump",
       "release": 1994,
+      "runtime": "2h 22m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782625/movies%20and%20music/image-Picsart-AiImageEnhancer_1_vsx84j.jpg",
       "rating": 8.8,
       "bio": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75, whose only desire is to be reunited with his childhood sweetheart."
@@ -116,6 +130,7 @@
       "id": 15,
       "name": "Get Out",
       "release": 2017,
+      "runtime": "1h 44m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782532/movies%20and%20music/image-Picsart-AiImageEnhancer_ewhdet.png",
       "rating": "7.7",
       "bio": "A young African-American visits his white girlfriend's parents for the weekend, where his simmering uneasiness about their reception of him eventually reaches a boiling point."
@@ -124,6 +139,7 @@
       "id": 16,
       "name": "Home Alone 2: Lost in New York",
       "release": 1992,
+      "runtime": "2h 0m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782403/movies%20and%20music/image-Picsart-AiImageEnhancer_qebrm0.jpg",
       "rating": 6.9,
       "bio": "Kevin is separated from his family again when he accidentally boards a flight to New York during a Christmas trip. He crosses paths with the same burglars, who now plan to rob a toy store on Christmas Eve."
@@ -132,6 +148,7 @@
       "id": 17,
       "name": "Saltburn",
       "release": 2023,
+      "runtime": "2h 11m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782078/movies%20and%20music/saltburn_apdebi.jpg",
       "rating": 7.0,
       "bio": "A student at Oxford University finds himself drawn into the world of a charming and aristocratic classmate, who invites him to his eccentric family's sprawling estate for a summer never to be forgotten.."
@@ -140,9 +157,28 @@
       "id": 18,
       "name": "The Karate Kid",
       "release": 1984,
+      "runtime": "2h 6m",
       "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769782212/movies%20and%20music/image-Picsart-AiImageEnhancer_svc55r.jpg",
       "rating": 7.3,
       "bio": "Recently relocated from NJ to LA, Daniel becomes the target of a gang of Cobra Kai dojo students. When Mr. Miyagi saves him with expert Karate skills, Daniel convinces him to teach him to defend himself, and put his bullies in their place."
+    },
+    {
+      "id": 19,
+      "name": "Sinners",
+      "release": 2025,
+      "runtime": "2h 17m",
+      "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769814122/movies%20and%20music/image-Picsart-AiImageEnhancer_bu2l4y.jpg",
+      "rating": 7.5,
+      "bio": "Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back."
+    },
+    {
+      "id": 20,
+      "name": "The Grand Budapest Hotel",
+      "release": 2014,
+      "runtime": "1h 39m",
+      "image": "https://res.cloudinary.com/dele4dvi9/image/upload/v1769817215/movies%20and%20music/IMG_4245-scaled_cttdbg.webp",
+      "rating": 8.1,
+      "bio": "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge."
     }
   ]
 }

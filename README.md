@@ -14,6 +14,10 @@ A full-stack MERN application for browsing movies and music albums with user aut
 - ✅ **Validation**: Zod schemas on client and server with real-time error feedback
 - 🔄 **React Query**: Data fetching with caching and automatic refetch
 - 🎭 **Enhanced UX**: Password visibility toggles, animated backgrounds, loading states
+- 🎉 **Celebrations**: Confetti + toast notifications on add/edit/delete
+- 🔍 **Search + Sort**: Search ignores leading “the”, sort by year or rating
+- 🛡️ **Admin Allowlist**: Dashboard and movie management restricted to admins
+- 🖼️ **Cloudinary Media**: Album artwork hosted via Cloudinary
 - 🔒 **Security**: Environment secrets properly managed, no exposed credentials
 - ⚡ **CI/CD**: Automated testing and builds via GitHub Actions
 
@@ -169,6 +173,7 @@ npm run format        # Prettier format
 - **UI Components**: Bootstrap, React Icons (FaEye/FaEyeSlash for password toggles)
 - **Styling**: Custom retro Y2K CSS with movie-themed gradients and animations
 - **Notifications**: React Hot Toast
+- **Celebrations**: canvas-confetti
 - **Carousel**: React Slick for albums showcase
 - **Error Handling**: Error Boundaries
 - **Loading States**: Skeleton loaders with retro aesthetics
@@ -252,6 +257,8 @@ REACT_APP_API_URL=  # Backend API URL (uses proxy if omitted)
 - **Jan 27**: Security fix - removed exposed `.env` file, added proper `.gitignore`
 - **Jan 28**: CI/CD fix - synchronized package-lock.json files for successful builds
 - **Jan 29**: README documentation update with retro Y2K design details
+- **Jan 30**: Admin allowlist, protected dashboard, and full movie editing
+- **Jan 31**: Cloudinary media, skeleton loaders, search/sort improvements, confetti + toast UX
 
 ## 🎓 Project Evolution
 
@@ -284,6 +291,9 @@ This project showcases progression from a basic MERN exam project (2023) to a pr
 - ✅ **Responsive Dashboard**: Grid layout with hover animations and smooth transitions
 - ✅ **Simplified Auth Flow**: Removed username requirement for streamlined UX
 - ✅ **18 Curated Movies**: Including Home Alone 2, Saltburn, Karate Kid with Cloudinary images
+- ✅ **Admin Allowlist**: Dashboard access restricted by approved emails
+- ✅ **Sorting + Search**: Sort by year/rating and search ignores leading “the”
+- ✅ **Celebrations**: Confetti + toast feedback on add/edit/delete actions
 
 ## 📸 Screenshots
 

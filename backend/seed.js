@@ -27,6 +27,7 @@ async function seedMovies() {
     const transformedMovies = movies.map((movie) => ({
       name: movie.name,
       release: Number(movie.release),
+      runtime: movie.runtime || undefined,
       // Use the image URL from the source data (e.g., Cloudinary) without forcing a static prefix
       image: movie.image,
       rating: Number(movie.rating),

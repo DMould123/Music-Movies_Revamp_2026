@@ -27,7 +27,10 @@ export default function App() {
           <Router>
             <div className="App">
               <NavBar />
-              <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
+              <Toaster
+                position="bottom-right"
+                toastOptions={{ duration: 2000, className: 'toast-y2k' }}
+              />
               <Routes>
                 <Route element={<Home />} path="/" />
                 <Route element={<Albums />} path="/albums" />

@@ -21,6 +21,7 @@ const MovieDetails = () => {
       <img src={movie.image} alt={movie.name} style={{ width: '100%', maxHeight: 500, objectFit: 'cover' }} />
       <h2 style={{ marginTop: '1rem' }}>{movie.name}</h2>
       <p><b>Release Year:</b> {movie.release}</p>
+      {movie.runtime && <p><b>Runtime:</b> ⏱ {movie.runtime}</p>}
       <p><b>IMDb Rating:</b> {movie.rating}</p>
       <p><b>Bio:</b> {movie.bio}</p>
     </div>
