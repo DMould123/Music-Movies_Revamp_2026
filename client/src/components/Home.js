@@ -32,6 +32,17 @@ function Home(props) {
     setMovies(moviesData)
   }, [moviesData])
 
+  const parseRuntimeToMinutes = (runtime) => {
+    if (!runtime) return 0
+    const match = runtime.match(/(\d+)h\s*(\d+)m/)
+    if (match) {
+      const hours = parseInt(match[1]) || 0
+      const minutes = parseInt(match[2]) || 0
+      return hours * 60 + minutes
+    }
+    return 0
+  }
+
   const applyFiltersAndSort = (data, keyword, sort) => {
     let results = data || []
 
@@ -59,6 +70,10 @@ function Home(props) {
       results = [...results].sort((a, b) => (b.rating || 0) - (a.rating || 0))
     } else if (sort === 'lowest-rating') {
       results = [...results].sort((a, b) => (a.rating || 0) - (b.rating || 0))
+    } else if (sort === 'longest-runtime') {
+      results = [...results].sort((a, b) => parseRuntimeToMinutes(b.runtime) - parseRuntimeToMinutes(a.runtime))
+    } else if (sort === 'shortest-runtime') {
+      results = [...results].sort((a, b) => parseRuntimeToMinutes(a.runtime) - parseRuntimeToMinutes(b.runtime))
     }
 
     return results
@@ -171,6 +186,8 @@ function Home(props) {
           <option value="newest">Newest to Oldest</option>
           <option value="highest-rating">Highest Rating</option>
           <option value="lowest-rating">Lowest Rating</option>
+          <option value="longest-runtime">Longest Runtime</option>
+          <option value="shortest-runtime">Shortest Runtime</option>
         </select>
       </div>
 
