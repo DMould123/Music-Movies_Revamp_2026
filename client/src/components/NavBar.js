@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Navbar, Nav, NavItem, Container } from 'react-bootstrap'
 import { UserContext } from '../context/userContext'
+import { ThemeContext } from '../context/themeContext'
 import api from '../api'
 import '../styles/navbar.css'
 
@@ -29,6 +30,7 @@ function LogoutButton() {
 
 function NavBar() {
   const { user } = useContext(UserContext)
+  const { theme, toggleTheme } = useContext(ThemeContext)
   const [expanded, setExpanded] = useState(false)
   const isAdmin = user?.email && adminEmails.includes(user.email.toLowerCase())
   
@@ -62,6 +64,14 @@ function NavBar() {
               style={{ width: '300px', height: '80px' }}
             />
           </Navbar.Brand>
+          <button 
+            className="theme-toggle-btn-navbar" 
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
           <Navbar.Toggle 
             aria-controls="basic-navbar-nav" 
             className={`navbar-toggler-custom ${expanded ? 'active' : ''}`}
@@ -136,18 +146,6 @@ function NavBar() {
                     onClick={handleNavLinkClick}
                   >
                     Dashboard
-                  </NavLink>
-                </NavItem>
-              )}
-              {user && (
-                <NavItem>
-                  <NavLink 
-                    style={Styles} 
-                    className="nav-link" 
-                    to="/favorites"
-                    onClick={handleNavLinkClick}
-                  >
-                    Favorites
                   </NavLink>
                 </NavItem>
               )}

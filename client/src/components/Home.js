@@ -3,9 +3,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import api from '../api'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { useContext } from 'react'
-import { UserContext } from '../context/userContext'
+import { useQuery } from '@tanstack/react-query'
 import SkeletonCard from './SkeletonCard'
 import '../styles/home.css'
 import '../styles/retro.css'
@@ -101,26 +99,6 @@ function Home(props) {
     setMovies(filtered)
   }
 
-  const { user } = useContext(UserContext)
-  const queryClient = useQueryClient()
-  const { data: favorites = [] } = useQuery({
-    queryKey: ['favorites'],
-    queryFn: async () => {
-      const res = await api.get('/api/favorites')
-      return res.data
-    },
-    enabled: !!user
-  })
-
-  const favoriteIds = new Set(favorites.map((m) => m._id))
-
-  const toggleFavorite = useMutation({
-    mutationFn: async (movieId) => {
-      await api.post(`/api/favorites/${movieId}/toggle`)
-    },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['favorites'] })
-  })
-
   const settings = {
     dots: true,
     infinite: false,
@@ -130,27 +108,58 @@ function Home(props) {
     initialSlide: 0,
     responsive: [
       {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: false,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: false,
+          dots: true
+        }
+      },
+      {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 2,
-          infinite: true,
+          infinite: false,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: false,
           dots: true
         }
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: false,
+          dots: true
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          infinite: false,
+          dots: true,
+          arrows: false
         }
       }
     ]
@@ -214,16 +223,6 @@ function Home(props) {
                         className="movie-card-image"
                         alt={movie.name}
                       />
-                      {user && (
-                        <button
-                          aria-label="Toggle Favorite"
-                          onClick={() => toggleFavorite.mutate(movie._id)}
-                          className={`favorite-btn-y2k ${favoriteIds.has(movie._id) ? 'is-favorite' : ''}`}
-                          title={favoriteIds.has(movie._id) ? 'Unfavorite' : 'Favorite'}
-                        >
-                          ★
-                        </button>
-                      )}
                     </div>
                     <div className="movie-card-content">
                       <h3 className="movie-card-title">{movie.name}</h3>

@@ -1,0 +1,502 @@
+/* Comprehensive Responsive Breakpoints - Music & Movies App */
+
+/* Extra Small Devices (320px - 479px) */
+@media (max-width: 479px) {
+  /* Navbar */
+  .navbar-y2k {
+    min-height: 65px;
+    padding: 6px 0;
+  }
+  
+  .navbar-y2k .container {
+    gap: 8px;
+  }
+  
+  .navbar-logo-img {
+    width: 120px !important;
+    height: 45px !important;
+  }
+  
+  .theme-toggle-btn-navbar {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+    margin: 0 4px;
+  }
+  
+  /* Home */
+  .home-wrapper {
+    padding: 80px 12px 40px;
+  }
+  
+  .home-title {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+  
+  .home-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+  
+  .search-container {
+    flex-direction: column;
+    gap: 10px;
+    max-width: 100%;
+  }
+  
+  .movie-search-input {
+    padding: 14px 16px;
+    font-size: 0.95rem;
+  }
+  
+  .sort-select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .movie-card-y2k {
+    padding: 12px;
+  }
+  
+  .movie-card-title {
+    font-size: 0.95rem;
+  }
+  
+  .movie-card-bio {
+    font-size: 0.75rem;
+    height: 60px;
+  }
+  
+  /* Dashboard */
+  .dashboard-wrapper {
+    padding: 60px 12px 30px;
+  }
+  
+  .dashboard-header {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .dashboard-header .y2k-title {
+    font-size: 1.8rem;
+  }
+  
+  .welcome-text {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+  }
+  
+  .retro-input,
+  .retro-textarea {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+  }
+  
+  .retro-button {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+  
+  .movies-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .movie-card {
+    padding: 16px;
+  }
+  
+  .movie-title {
+    font-size: 1.05rem;
+  }
+  
+  .edit-btn,
+  .delete-btn {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+  }
+}
+
+/* Small Devices (480px - 767px) */
+@media (min-width: 480px) and (max-width: 767px) {
+  /* Navbar */
+  .navbar-y2k {
+    min-height: 70px;
+    padding: 8px 0;
+  }
+  
+  .navbar-logo-img {
+    width: 160px !important;
+    height: 50px !important;
+  }
+  
+  .theme-toggle-btn-navbar {
+    width: 38px;
+    height: 38px;
+    font-size: 1.1rem;
+    margin: 0 6px;
+  }
+  
+  /* Home */
+  .home-wrapper {
+    padding: 80px 16px 40px;
+  }
+  
+  .home-title {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
+  
+  .home-subtitle {
+    font-size: 0.95rem;
+  }
+  
+  .search-container {
+    max-width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .movie-search-input {
+    padding: 14px 18px;
+    font-size: 0.95rem;
+  }
+  
+  .sort-select {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+  
+  .movie-card-y2k {
+    padding: 14px;
+  }
+  
+  .movie-card-title {
+    font-size: 1rem;
+  }
+  
+  .movie-card-bio {
+    font-size: 0.8rem;
+    height: 70px;
+  }
+  
+  /* Dashboard */
+  .dashboard-wrapper {
+    padding: 70px 16px 40px;
+  }
+  
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+  }
+  
+  .add-movie-form {
+    max-width: 100%;
+  }
+}
+
+/* Tablets & Medium Devices (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Navbar */
+  .navbar-y2k {
+    min-height: 75px;
+    padding: 10px 0;
+  }
+  
+  .navbar-logo-img {
+    width: 180px !important;
+    height: 55px !important;
+  }
+  
+  .theme-toggle-btn-navbar {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin: 0 8px;
+  }
+  
+  /* Home */
+  .home-wrapper {
+    padding: 90px 24px 50px;
+  }
+  
+  .home-title {
+    font-size: 2.8rem;
+    letter-spacing: 3px;
+  }
+  
+  .home-subtitle {
+    font-size: 1rem;
+  }
+  
+  .search-container {
+    max-width: 700px;
+    flex-direction: row;
+    gap: 12px;
+  }
+  
+  .movie-search-input {
+    padding: 16px 20px;
+    font-size: 1rem;
+    flex: 2;
+  }
+  
+  .sort-select {
+    padding: 14px 18px;
+    font-size: 0.95rem;
+    flex: 1;
+    white-space: normal;
+  }
+  
+  .movie-card-y2k {
+    padding: 16px;
+  }
+  
+  .movie-card-title {
+    font-size: 1.1rem;
+  }
+  
+  .movie-card-bio {
+    font-size: 0.85rem;
+    height: 80px;
+  }
+  
+  /* Dashboard */
+  .dashboard-wrapper {
+    padding: 80px 24px 50px;
+  }
+  
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .add-movie-form {
+    max-width: 550px;
+  }
+}
+
+/* Large Devices (1024px - 1199px) - Nest Hub, iPad Pro */
+@media (min-width: 1024px) and (max-width: 1199px) {
+  /* Navbar */
+  .navbar-y2k {
+    min-height: 80px;
+    padding: 12px 0;
+  }
+  
+  .navbar-y2k .container {
+    max-width: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  
+  .navbar-logo-img {
+    width: 180px !important;
+    height: 55px !important;
+  }
+  
+  .theme-toggle-btn-navbar {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin: 0 8px 0 20px;
+  }
+  
+  .navbar-y2k .nav-link {
+    font-size: 0.9rem;
+    padding: 8px 12px !important;
+    margin: 0 3px;
+  }
+  
+  .logout-btn-y2k {
+    font-size: 0.85rem;
+    padding: 8px 16px;
+    margin-left: 8px;
+  }
+  
+  /* Home */
+  .home-wrapper {
+    padding: 100px 32px 60px;
+  }
+  
+  .home-title {
+    font-size: 3rem;
+    letter-spacing: 3px;
+  }
+  
+  .home-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .search-container {
+    max-width: 750px;
+    gap: 14px;
+  }
+  
+  .movie-search-input {
+    padding: 16px 22px;
+    font-size: 1rem;
+  }
+  
+  .sort-select {
+    padding: 14px 18px;
+    font-size: 0.95rem;
+  }
+  
+  .movie-card-y2k {
+    padding: 16px;
+  }
+  
+  .movie-card-title {
+    font-size: 1.15rem;
+  }
+  
+  .movie-card-bio {
+    font-size: 0.85rem;
+    height: 85px;
+  }
+  
+  /* Dashboard */
+  .dashboard-wrapper {
+    padding: 90px 32px 60px;
+  }
+  
+  .dashboard-header {
+    max-width: 1000px;
+    margin: 0 auto 40px;
+  }
+  
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+  
+  .add-movie-form {
+    max-width: 600px;
+    margin: 0 auto 40px;
+  }
+}
+
+/* Extra Large Devices (1200px+) */
+@media (min-width: 1200px) {
+  /* Navbar */
+  .navbar-y2k {
+    min-height: 85px;
+    padding: 14px 0;
+  }
+  
+  .navbar-logo-img {
+    width: 220px !important;
+    height: 70px !important;
+  }
+  
+  .theme-toggle-btn-navbar {
+    width: 45px;
+    height: 45px;
+    font-size: 1.4rem;
+    margin: 0 12px 0 100px;
+  }
+  
+  /* Home */
+  .home-wrapper {
+    padding: 120px 40px 80px;
+  }
+  
+  .home-title {
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+  }
+  
+  .home-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .search-container {
+    max-width: 800px;
+    gap: 16px;
+  }
+  
+  .movie-search-input {
+    padding: 18px 24px;
+    font-size: 1.1rem;
+  }
+  
+  .sort-select {
+    padding: 15px 20px;
+    font-size: 0.95rem;
+  }
+  
+  .movie-card-y2k {
+    padding: 18px;
+  }
+  
+  .movie-card-title {
+    font-size: 1.2rem;
+  }
+  
+  .movie-card-bio {
+    font-size: 0.9rem;
+    height: 90px;
+  }
+  
+  /* Dashboard */
+  .dashboard-wrapper {
+    padding: 120px 40px 80px;
+  }
+  
+  .dashboard-header {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto 50px;
+  }
+  
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+  }
+  
+  .add-movie-form {
+    max-width: 700px;
+    margin: 0 auto 50px;
+  }
+}
+
+/* Ultra Wide (1400px+) */
+@media (min-width: 1400px) {
+  .home-wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .dashboard-wrapper {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+  
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  }
+}
+
+/* Landscape orientation adjustments */
+@media (max-height: 600px) and (orientation: landscape) {
+  .navbar-y2k {
+    min-height: 60px;
+    padding: 6px 0;
+  }
+  
+  .home-wrapper {
+    padding: 70px 20px 30px;
+  }
+  
+  .home-title {
+    font-size: 1.8rem;
+  }
+  
+  .home-subtitle {
+    font-size: 0.85rem;
+  }
+}

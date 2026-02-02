@@ -193,6 +193,18 @@
   margin: 0 0 8px 0;
 }
 
+.movie-runtime {
+  color: #00E5FF;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(63, 135, 255, 0.2));
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+
 .movie-rating {
   display: inline-flex;
   align-items: center;
@@ -203,6 +215,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   color: #FFD700;
+  margin-left: 12px;
 }
 
 .rating-star {

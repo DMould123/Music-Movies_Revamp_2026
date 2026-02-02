@@ -23,7 +23,6 @@ app.use(
 // routes
 app.use('/api/auth', require('./routes/authRoutes'))
 app.use('/api/movies', require('./routes/movieRoutes'))
-app.use('/api/favorites', require('./routes/favoriteRoutes'))
 
 // health endpoint for quick checks
 app.get('/api/health', (req, res) => {
