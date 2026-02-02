@@ -5,17 +5,15 @@ A full-stack MERN application for browsing movies and music albums with user aut
 ## ✨ Features
 
 - 🔐 **Authentication**: JWT-based auth with secure httpOnly cookies (username-free registration)
-- 🎬 **Movies**: Browse, search, view details, and manage favorites
-- ⭐ **Favorites**: Toggle favorites (requires login)
-- 📊 **Dashboard**: Stunning retro-future dashboard with add, edit, and delete movie capabilities
-- 🎵 **Albums**: Browse music albums with responsive carousel
-- 🎨 **Retro Y2K Design**: Movie-themed gradients (crimson/gold/violet) with glass-morphism effects
-- 📱 **Responsive**: Mobile-friendly UI with skeleton loaders and adaptive layouts
+- 🎬 **Movies**: Browse, search, view details with advanced filtering
+- ⏱️ **Runtime Sorting**: Sort movies by longest/shortest runtime
+- 🌙 **Dark/Light Theme Toggle**: Switch between themes with localStorage persistence
+- 📱 **Responsive**: Mobile-friendly UI optimized for all screen sizes including Nest Hub (1024x600)
 - ✅ **Validation**: Zod schemas on client and server with real-time error feedback
 - 🔄 **React Query**: Data fetching with caching and automatic refetch
 - 🎭 **Enhanced UX**: Password visibility toggles, animated backgrounds, loading states
 - 🎉 **Celebrations**: Confetti + toast notifications on add/edit/delete
-- 🔍 **Search + Sort**: Search ignores leading “the”, sort by year or rating
+- 🔍 **Search + Sort**: Search ignores leading "the", multiple sort options (year, rating, runtime)
 - 🛡️ **Admin Allowlist**: Dashboard and movie management restricted to admins
 - 🖼️ **Cloudinary Media**: Album artwork hosted via Cloudinary
 - 🔒 **Security**: Environment secrets properly managed, no exposed credentials
@@ -25,8 +23,8 @@ A full-stack MERN application for browsing movies and music albums with user aut
 
 ```
 ├── backend/          # Node.js/Express API server
-│   ├── controllers/  # Request handlers (auth, movies, favorites)
-│   ├── models/       # Mongoose schemas (User, Movie, Favorite)
+│   ├── controllers/  # Request handlers (auth, movies)
+│   ├── models/       # Mongoose schemas (User, Movie)
 │   ├── routes/       # API routes with auth middleware
 │   ├── middleware/   # JWT verification
 │   ├── validation/   # Zod schemas for input validation
@@ -35,7 +33,8 @@ A full-stack MERN application for browsing movies and music albums with user aut
     ├── src/
     │   ├── components/    # UI components (NavBar, Home, Albums, etc.)
     │   ├── pages/         # Route pages (Login, Register, Dashboard, etc.)
-    │   ├── context/       # React Context for user state
+    │   ├── context/       # React Context for user and theme state
+    │   ├── styles/        # CSS files (theme.css, responsive.css, navbar.css, etc.)
     │   └── api.js         # Configured Axios instance
 ```
 
@@ -130,11 +129,6 @@ Client runs on `http://localhost:3000`
 - `PUT /api/movies/:id` - Update movie (protected)
 - `DELETE /api/movies/:id` - Delete movie (protected)
 
-### Favorites
-
-- `GET /api/favorites` - Get user's favorite movies (protected)
-- `POST /api/favorites/:movieId/toggle` - Toggle favorite status (protected)
-
 ### Health
 
 - `GET /api/health` - API health check
@@ -167,14 +161,14 @@ npm run format        # Prettier format
 
 - **Framework**: React 18
 - **Routing**: React Router v6
-- **State Management**: React Context + React Query (TanStack Query)
+- **State Management**: React Context (User + Theme) + React Query (TanStack Query)
 - **Forms**: React Hook Form + Zod validation
 - **HTTP Client**: Axios
 - **UI Components**: Bootstrap, React Icons (FaEye/FaEyeSlash for password toggles)
-- **Styling**: Custom retro Y2K CSS with movie-themed gradients and animations
+- **Styling**: Custom retro Y2K CSS with theme variables, responsive.css breakpoints (320px-1400px+)
 - **Notifications**: React Hot Toast
 - **Celebrations**: canvas-confetti
-- **Carousel**: React Slick for albums showcase
+- **Carousel**: React Slick for albums showcase with responsive settings
 - **Error Handling**: Error Boundaries
 - **Loading States**: Skeleton loaders with retro aesthetics
 
@@ -251,14 +245,19 @@ REACT_APP_API_URL=  # Backend API URL (uses proxy if omitted)
 5. CI runs on push via GitHub Actions (build and test)
 6. All secrets must be in `.env` files (never commit `.env` to git)
 
-## 🚀 Recent Updates (January 2026)
+## 🚀 Recent Updates (February 2026)
 
-- **Jan 26**: Initial repository setup with complete MERN stack
-- **Jan 27**: Security fix - removed exposed `.env` file, added proper `.gitignore`
-- **Jan 28**: CI/CD fix - synchronized package-lock.json files for successful builds
-- **Jan 29**: README documentation update with retro Y2K design details
-- **Jan 30**: Admin allowlist, protected dashboard, and full movie editing
-- **Jan 31**: Cloudinary media, skeleton loaders, search/sort improvements, confetti + toast UX
+- **Feb 1-2**: Major UX overhaul:
+  - ✅ Added dark/light theme toggle with ThemeContext and localStorage persistence
+  - ✅ Comprehensive responsive design framework (responsive.css with 6 breakpoints)
+  - ✅ Special optimization for Nest Hub 1024x600 display
+  - ✅ Runtime sorting (longest/shortest) with "Xh Ym" format display
+  - ✅ Improved runtime visibility with cyan color (#00E5FF) and gradient background
+  - ✅ Enhanced runtime/rating spacing and padding
+  - ✅ Fixed logout button cut-off on Nest Hub
+  - ✅ Theme toggle positioning with 100px left margin on larger screens
+  - ✅ Removed favorites feature (simplified app - all movies on slider are favorites)
+  - ✅ All responsive breakpoints tested: 320px, 480px, 768px, 1024px, 1200px, 1400px+
 
 ## 🎓 Project Evolution
 
@@ -276,7 +275,6 @@ This project showcases progression from a basic MERN exam project (2023) to a pr
 - ✅ React Query for caching & state management
 - ✅ Form validation with React Hook Form + Zod
 - ✅ Protected routes & auth middleware
-- ✅ Favorites feature with database relations
 - ✅ Skeleton loaders & error boundaries
 - ✅ Password visibility toggles & confirm password
 - ✅ Inline editing capability
@@ -290,10 +288,14 @@ This project showcases progression from a basic MERN exam project (2023) to a pr
 - ✅ **Glass-Morphism UI**: Frosted glass cards with backdrop blur
 - ✅ **Responsive Dashboard**: Grid layout with hover animations and smooth transitions
 - ✅ **Simplified Auth Flow**: Removed username requirement for streamlined UX
-- ✅ **18 Curated Movies**: Including Home Alone 2, Saltburn, Karate Kid with Cloudinary images
+- ✅ **20 Curated Movies**: With Cloudinary images and runtime data
 - ✅ **Admin Allowlist**: Dashboard access restricted by approved emails
-- ✅ **Sorting + Search**: Sort by year/rating and search ignores leading “the”
+- ✅ **Advanced Sorting**: Sort by year, rating, and runtime (longest/shortest)
+- ✅ **Search Enhancement**: Search ignores leading "the"
 - ✅ **Celebrations**: Confetti + toast feedback on add/edit/delete actions
+- ✅ **Dark/Light Theme Toggle**: Theme context with CSS variables and localStorage persistence
+- ✅ **Comprehensive Responsive Design**: 6 breakpoints (320px-1400px+) with Nest Hub optimization
+- ✅ **Runtime Display**: Formatted as "Xh Ym" with enhanced visibility (cyan color)
 
 ## 📸 Screenshots
 
@@ -312,7 +314,7 @@ The app features a stunning retro-future aesthetic inspired by Y2K culture:
 
 - **Login/Register**: Retro-themed authentication with password visibility toggles
 - **Dashboard**: Full CRUD operations with inline editing and movie cards
-- **Home**: Browse 18+ curated movies with ratings and details
+- **Home**: Browse 20 curated movies with ratings, runtimes, and advanced sorting
 - **Albums**: Responsive carousel showcasing music albums
 
 ## 🎨 Design Philosophy
