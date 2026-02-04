@@ -64,12 +64,95 @@
   animation: titlePulse 2s ease-in-out infinite alternate;
 }
 
+[data-theme="light"] .albums-title {
+  background: linear-gradient(45deg, #9c27b0, #f50057, #9c27b0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .albums-subtitle {
   color: rgba(255, 215, 0, 0.9);
   font-size: 1.2rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
+}
+
+[data-theme="light"] .albums-subtitle {
+  color: #9c27b0;
+  font-weight: 700;
+}
+
+.albums-sort-row {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.albums-sort-label {
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.album-sort-select {
+  background: var(--input-bg);
+  color: var(--accent-gold);
+  border: 2px solid var(--input-border);
+  border-radius: 20px;
+  padding: 10px 40px 10px 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  outline: none;
+  transition: all 0.3s ease;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFD700" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px;
+  cursor: pointer;
+}
+
+[data-theme="light"] .album-sort-select {
+  background-color: #ffffff;
+  border: 2px solid #9c27b0;
+  color: #9c27b0;
+  box-shadow: 0 2px 8px rgba(156, 39, 176, 0.3);
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%239c27b0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+}
+
+.album-sort-select:hover {
+  background-color: var(--card-bg-hover);
+}
+
+.album-sort-select:focus {
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+[data-theme="light"] .album-sort-select:focus {
+  border-color: #9c27b0;
+  box-shadow: 0 0 15px rgba(156, 39, 176, 0.4);
+}
+
+/* Dropdown options styling */
+.album-sort-select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 10px;
+  font-weight: 700;
+}
+
+[data-theme="light"] .album-sort-select option {
+  background: #ffffff;
+  color: #1a1a1a;
 }
 
 /* Albums Slider Container */
@@ -190,18 +273,24 @@
 
 /* Album Release Year */
 .album-release-year {
-  background: linear-gradient(135deg, #FFD700, #FFA500);
-  color: #000;
+  background: linear-gradient(135deg, #9400D3, #FFD700);
+  color: #fff;
   font-size: 1.05rem;
   font-weight: 900;
   padding: 6px 14px;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(148, 0, 211, 0.4);
   text-shadow: none;
   margin: 0 0 12px 0;
   width: fit-content;
+}
+
+[data-theme="light"] .album-release-year {
+  background: linear-gradient(135deg, #9c27b0, #e91e63);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
 }
 
 /* Album Details Button */

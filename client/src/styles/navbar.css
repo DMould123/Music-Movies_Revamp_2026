@@ -74,13 +74,13 @@
 }
 
 [data-theme="light"] .theme-toggle-btn-navbar {
-  background: linear-gradient(135deg, rgba(156, 39, 176, 0.2), rgba(255, 193, 7, 0.2));
-  border: 2px solid rgba(156, 39, 176, 0.4);
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.3), rgba(233, 30, 99, 0.2));
+  border: 2px solid #9c27b0;
 }
 
 [data-theme="light"] .theme-toggle-btn-navbar:hover {
-  background: linear-gradient(135deg, rgba(156, 39, 176, 0.3), rgba(255, 193, 7, 0.3));
-  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.4), rgba(233, 30, 99, 0.3));
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.5);
 }
 
 /* Nav Links */
