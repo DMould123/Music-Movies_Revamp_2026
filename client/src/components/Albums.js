@@ -98,6 +98,7 @@ export default function Albums() {
                   <Card.Title className="album-card-title">
                     <b>{album.AlbumArtist}</b> - {album.AlbumTitle}
                   </Card.Title>
+                  <p className="album-release-year">📅 {album.AlbumReleaseYear}</p>
                   <Popup
                     trigger={<button className="album-details-btn">Album Details</button>}
                     position="center center"

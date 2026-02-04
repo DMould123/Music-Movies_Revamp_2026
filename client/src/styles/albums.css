@@ -188,6 +188,22 @@
   font-weight: 900;
 }
 
+/* Album Release Year */
+.album-release-year {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #000;
+  font-size: 1.05rem;
+  font-weight: 900;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+  text-shadow: none;
+  margin: 0 0 12px 0;
+  width: fit-content;
+}
+
 /* Album Details Button */
 .album-details-btn {
   background: linear-gradient(135deg, #9400D3, #DC143C);
