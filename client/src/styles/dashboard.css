@@ -132,6 +132,7 @@
 }
 
 /* Movie Card */
+/* Y2K retro card with frosted glass effect and animated gradient border */
 .movie-card {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
   backdrop-filter: blur(10px);
@@ -238,7 +239,7 @@
 
 @media (prefers-color-scheme: light) {
   .movie-bio {
-    color: rgba(0, 0, 0, 0.85);
+    color: rgba(0, 0, 0, 0.9);
   }
 }
 
