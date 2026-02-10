@@ -12,7 +12,8 @@ import '../styles/retro.css'
 export default function Albums() {
   const [albums, setAlbums] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [sortOrder, setSortOrder] = useState('none') // 'none', 'longest', 'shortest'
+  const [durationSort, setDurationSort] = useState('none') // 'none', 'longest', 'shortest'
+  const [yearSort, setYearSort] = useState('none') // 'none', 'oldest', 'newest'
 
   useEffect(() => {
     setIsLoading(true)
@@ -30,24 +31,41 @@ export default function Albums() {
   }, [])
 
   const getSortedAlbums = () => {
-    if (sortOrder === 'none') return albums
-    
-    const convertToMinutes = (timeStr) => {
-      const [minutes, seconds] = timeStr.split(':').map(Number)
-      return minutes * 60 + seconds
+    let sorted = [...albums]
+
+    // Apply duration sorting
+    if (durationSort !== 'none') {
+      const convertToMinutes = (timeStr) => {
+        const [minutes, seconds] = timeStr.split(':').map(Number)
+        return minutes * 60 + seconds
+      }
+
+      sorted.sort((a, b) => {
+        const durationA = convertToMinutes(a.AlbumLength)
+        const durationB = convertToMinutes(b.AlbumLength)
+        
+        if (durationSort === 'longest') {
+          return durationB - durationA
+        } else {
+          return durationA - durationB
+        }
+      })
     }
 
-    const sorted = [...albums].sort((a, b) => {
-      const durationA = convertToMinutes(a.AlbumLength)
-      const durationB = convertToMinutes(b.AlbumLength)
-      
-      if (sortOrder === 'longest') {
-        return durationB - durationA
-      } else {
-        return durationA - durationB
-      }
-    })
-    
+    // Apply year sorting
+    if (yearSort !== 'none') {
+      sorted.sort((a, b) => {
+        const yearA = parseInt(a.AlbumReleaseYear)
+        const yearB = parseInt(b.AlbumReleaseYear)
+        
+        if (yearSort === 'oldest') {
+          return yearA - yearB
+        } else {
+          return yearB - yearA
+        }
+      })
+    }
+
     return sorted
   }
   const settings = {
@@ -102,22 +120,34 @@ export default function Albums() {
 
       <div className="albums-filter-buttons">
         <button 
-          className={`filter-btn ${sortOrder === 'none' ? 'active' : ''}`}
-          onClick={() => setSortOrder('none')}
+          className={`filter-btn ${durationSort === 'none' && yearSort === 'none' ? 'active' : ''}`}
+          onClick={() => {setDurationSort('none'); setYearSort('none')}}
         >
           All Albums
         </button>
         <button 
-          className={`filter-btn ${sortOrder === 'longest' ? 'active' : ''}`}
-          onClick={() => setSortOrder('longest')}
+          className={`filter-btn ${durationSort === 'longest' ? 'active' : ''}`}
+          onClick={() => {setDurationSort('longest'); setYearSort('none')}}
         >
           Longest
         </button>
         <button 
-          className={`filter-btn ${sortOrder === 'shortest' ? 'active' : ''}`}
-          onClick={() => setSortOrder('shortest')}
+          className={`filter-btn ${durationSort === 'shortest' ? 'active' : ''}`}
+          onClick={() => {setDurationSort('shortest'); setYearSort('none')}}
         >
           Shortest
+        </button>
+        <button 
+          className={`filter-btn ${yearSort === 'oldest' ? 'active' : ''}`}
+          onClick={() => {setYearSort('oldest'); setDurationSort('none')}}
+        >
+          Oldest
+        </button>
+        <button 
+          className={`filter-btn ${yearSort === 'newest' ? 'active' : ''}`}
+          onClick={() => {setYearSort('newest'); setDurationSort('none')}}
+        >
+          Newest
         </button>
       </div>
 
