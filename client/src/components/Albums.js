@@ -12,6 +12,7 @@ import '../styles/retro.css'
 export default function Albums() {
   const [albums, setAlbums] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [sortOrder, setSortOrder] = useState('none') // 'none', 'longest', 'shortest'
 
   useEffect(() => {
     setIsLoading(true)
@@ -27,6 +28,28 @@ export default function Albums() {
         setIsLoading(false)
       })
   }, [])
+
+  const getSortedAlbums = () => {
+    if (sortOrder === 'none') return albums
+    
+    const convertToMinutes = (timeStr) => {
+      const [minutes, seconds] = timeStr.split(':').map(Number)
+      return minutes * 60 + seconds
+    }
+
+    const sorted = [...albums].sort((a, b) => {
+      const durationA = convertToMinutes(a.AlbumLength)
+      const durationB = convertToMinutes(b.AlbumLength)
+      
+      if (sortOrder === 'longest') {
+        return durationB - durationA
+      } else {
+        return durationA - durationB
+      }
+    })
+    
+    return sorted
+  }
   const settings = {
     dots: true,
     infinite: true,
@@ -77,14 +100,35 @@ export default function Albums() {
         <p className="albums-subtitle">Classic Albums Collection</p>
       </div>
 
+      <div className="albums-filter-buttons">
+        <button 
+          className={`filter-btn ${sortOrder === 'none' ? 'active' : ''}`}
+          onClick={() => setSortOrder('none')}
+        >
+          All Albums
+        </button>
+        <button 
+          className={`filter-btn ${sortOrder === 'longest' ? 'active' : ''}`}
+          onClick={() => setSortOrder('longest')}
+        >
+          Longest
+        </button>
+        <button 
+          className={`filter-btn ${sortOrder === 'shortest' ? 'active' : ''}`}
+          onClick={() => setSortOrder('shortest')}
+        >
+          Shortest
+        </button>
+      </div>
+
       <div className="albums-slider-container">
         <Slider {...settings}>
           {isLoading ? (
             [1, 2, 3].map((i) => (
               <SkeletonAlbumCard key={i} />
             ))
-          ) : albums.length > 0 ? (
-            albums.map((album) => (
+          ) : getSortedAlbums().length > 0 ? (
+            getSortedAlbums().map((album) => (
             <div className="album-card-y2k" key={album.AlbumId}>
               <Card className="album-card-inner">
                 <div className="album-image-container">
@@ -98,7 +142,10 @@ export default function Albums() {
                   <Card.Title className="album-card-title">
                     <b>{album.AlbumArtist}</b> - {album.AlbumTitle}
                   </Card.Title>
-                  <p className="album-release-year">📅 {album.AlbumReleaseYear}</p>
+                  <div className="album-info-row">
+                    <p className="album-release-year">📅 {album.AlbumReleaseYear}</p>
+                    <p className="album-length">⏱ {album.AlbumLength}</p>
+                  </div>
                   <Popup
                     trigger={<button className="album-details-btn">Album Details</button>}
                     position="center center"

@@ -335,6 +335,9 @@ const Dashboard = () => {
                           </div>
                         )}
                       </div>
+                      {movie.bio && (
+                        <p className="movie-bio">{movie.bio}</p>
+                      )}
                       {user && (
                         <div className="movie-actions">
                           <button className="edit-btn" onClick={() => setEditingId(movie._id)}>

@@ -84,6 +84,61 @@
   font-weight: 700;
 }
 
+/* Album Filter Buttons */
+.albums-filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  z-index: 1;
+  position: relative;
+}
+
+.filter-btn {
+  padding: 10px 24px;
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFD700;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #FFD700, #DC143C);
+  color: #000;
+  border-color: #FFD700;
+  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+}
+
+[data-theme="light"] .filter-btn {
+  color: #9c27b0;
+  border-color: rgba(156, 39, 176, 0.3);
+}
+
+[data-theme="light"] .filter-btn:hover {
+  box-shadow: 0 4px 12px rgba(156, 39, 176, 0.2);
+}
+
+[data-theme="light"] .filter-btn.active {
+  background: linear-gradient(135deg, #9c27b0, #f50057);
+  color: #fff;
+  border-color: #9c27b0;
+  box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+}
+
 .albums-sort-row {
   margin-top: 20px;
   display: flex;
@@ -271,6 +326,14 @@
   font-weight: 900;
 }
 
+/* Album Info Row - Year and Length Side by Side */
+.album-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
 /* Album Release Year */
 .album-release-year {
   background: linear-gradient(135deg, #9400D3, #FFD700);
@@ -283,7 +346,7 @@
   letter-spacing: 1px;
   box-shadow: 0 4px 12px rgba(148, 0, 211, 0.4);
   text-shadow: none;
-  margin: 0 0 12px 0;
+  margin: 0;
   width: fit-content;
 }
 
@@ -291,6 +354,27 @@
   background: linear-gradient(135deg, #9c27b0, #e91e63);
   color: #fff;
   box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
+}
+
+/* Album Length */
+.album-length {
+  background: linear-gradient(135deg, #00E5FF, #3f87ff);
+  color: #000;
+  font-size: 1.05rem;
+  font-weight: 900;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(0, 229, 255, 0.4);
+  margin: 0;
+  width: fit-content;
+}
+
+[data-theme="light"] .album-length {
+  background: linear-gradient(135deg, #00bcd4, #2196f3);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 188, 212, 0.4);
 }
 
 /* Album Details Button */
