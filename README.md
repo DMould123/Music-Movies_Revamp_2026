@@ -7,7 +7,9 @@ A full-stack MERN application for browsing movies and music albums with user aut
 - 🔐 **Authentication**: JWT-based auth with secure httpOnly cookies (username-free registration)
 - 🎬 **Movies**: Browse, search, view details with advanced filtering
 - ⏱️ **Runtime Sorting**: Sort movies by longest/shortest runtime
-- 🌙 **Dark/Light Theme Toggle**: Switch between themes with localStorage persistence
+- � **Albums**: Browse vinyl collection with responsive carousel
+- 🔀 **Album Filters**: Sort by album duration (longest/shortest) or release year (oldest/newest)
+- �🌙 **Dark/Light Theme Toggle**: Switch between themes with localStorage persistence
 - 📱 **Responsive**: Mobile-friendly UI optimized for all screen sizes including Nest Hub (1024x600)
 - ✅ **Validation**: Zod schemas on client and server with real-time error feedback
 - 🔄 **React Query**: Data fetching with caching and automatic refetch
