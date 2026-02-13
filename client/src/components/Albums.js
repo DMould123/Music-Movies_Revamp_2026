@@ -30,10 +30,12 @@ export default function Albums() {
       })
   }, [])
 
+  // Handles dual-dimensional sorting for albums
+  // Supports independent sorting by duration (longest/shortest) and year (oldest/newest)
   const getSortedAlbums = () => {
     let sorted = [...albums]
 
-    // Apply duration sorting
+    // Apply duration sorting: converts MM:SS format to seconds for comparison
     if (durationSort !== 'none') {
       const convertToMinutes = (timeStr) => {
         const [minutes, seconds] = timeStr.split(':').map(Number)
@@ -44,6 +46,7 @@ export default function Albums() {
         const durationA = convertToMinutes(a.AlbumLength)
         const durationB = convertToMinutes(b.AlbumLength)
         
+        // Descending for longest, ascending for shortest
         if (durationSort === 'longest') {
           return durationB - durationA
         } else {
@@ -52,12 +55,13 @@ export default function Albums() {
       })
     }
 
-    // Apply year sorting
+    // Apply year sorting: filters albums chronologically
     if (yearSort !== 'none') {
       sorted.sort((a, b) => {
         const yearA = parseInt(a.AlbumReleaseYear)
         const yearB = parseInt(b.AlbumReleaseYear)
         
+        // Ascending for oldest-to-newest, descending for newest-to-oldest
         if (yearSort === 'oldest') {
           return yearA - yearB
         } else {
