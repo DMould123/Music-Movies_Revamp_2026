@@ -28,14 +28,17 @@ async function dropUsernameIndex() {
     indexes.forEach((index) => {
       console.log(`  - ${index.name}: ${JSON.stringify(index.key)}`)
     })
-
-    await mongoose.connection.close()
-    console.log('\n✅ Done!')
-    process.exit(0)
   } catch (error) {
     console.error('❌ Error:', error)
-    process.exit(1)
+    process.exitCode = 1
+  } finally {
+    if (mongoose.connection.readyState !== 0) {
+      await mongoose.connection.close()
+      console.log('\nMongoDB connection closed')
+    }
   }
+
+  console.log('\n✅ Done!')
 }
 
 dropUsernameIndex()
