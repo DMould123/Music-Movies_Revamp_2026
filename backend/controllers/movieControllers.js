@@ -1,8 +1,10 @@
 const Movie = require('../models/movie')
 const { movieSchema } = require('../validation/movieSchemas')
 
+// Converts Zod issues into a single response message.
 const formatZodError = (issueList) => issueList.map((i) => i.message).join(', ')
 
+// Returns all movies sorted by newest first.
 const getMovies = async (req, res, next) => {
   try {
     const movies = await Movie.find().sort({ createdAt: -1 })
@@ -12,6 +14,7 @@ const getMovies = async (req, res, next) => {
   }
 }
 
+// Returns one movie by id.
 const getMovieById = async (req, res, next) => {
   try {
     const movie = await Movie.findById(req.params.id)
@@ -22,6 +25,7 @@ const getMovieById = async (req, res, next) => {
   }
 }
 
+// Validates and creates a new movie.
 const createMovie = async (req, res, next) => {
   try {
     const parsed = movieSchema.safeParse(req.body)
@@ -36,6 +40,7 @@ const createMovie = async (req, res, next) => {
   }
 }
 
+// Validates partial payload and updates a movie.
 const updateMovie = async (req, res, next) => {
   try {
     const parsed = movieSchema.partial().safeParse(req.body)
@@ -57,6 +62,7 @@ const updateMovie = async (req, res, next) => {
   }
 }
 
+// Deletes a movie by id.
 const deleteMovie = async (req, res, next) => {
   try {
     const movie = await Movie.findByIdAndDelete(req.params.id)

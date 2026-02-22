@@ -4,13 +4,14 @@ const jwt = require('jsonwebtoken')
 const config = require('../config')
 const { registerSchema, loginSchema } = require('../validation/authSchemas')
 
+// Converts Zod issues into a single response message.
 const formatZodError = (issueList) => issueList.map((i) => i.message).join(', ')
 
 const test = (req, res) => {
   res.json('test working')
 }
 
-// Register Endpoint
+// Registers a new user after validation and password hashing.
 const registerUser = async (req, res) => {
   try {
     const parsed = registerSchema.safeParse(req.body)
@@ -43,7 +44,7 @@ const registerUser = async (req, res) => {
   }
 }
 
-// Login Endpoint
+// Logs in user, validates credentials, and sets JWT cookie.
 const loginUser = async (req, res) => {
   try {
     const parsed = loginSchema.safeParse(req.body)
@@ -80,6 +81,8 @@ const loginUser = async (req, res) => {
     return res.status(500).json({ error: 'Server error' })
   }
 }
+
+// Returns current user payload from token cookie.
 const getProfile = (req, res) => {
   try {
     const { token } = req.cookies
@@ -99,6 +102,7 @@ const getProfile = (req, res) => {
   }
 }
 
+// Clears auth cookie to log user out.
 const logoutUser = (req, res) => {
   res
     .clearCookie('token', { ...config.cookieOptions, maxAge: 0 })
