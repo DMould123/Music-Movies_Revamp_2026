@@ -1,11 +1,13 @@
 const jwt = require('jsonwebtoken')
 const config = require('../config')
 
+// Checks whether a user email is in the configured admin allowlist.
 const isAdminEmail = (email) => {
   if (!email) return false
   return config.adminEmails.includes(email.toLowerCase())
 }
 
+// Requires a valid JWT cookie and attaches decoded user to req.user.
 const requireAuth = (req, res, next) => {
   try {
     const token = req.cookies?.token
@@ -25,6 +27,7 @@ const requireAuth = (req, res, next) => {
   }
 }
 
+// Requires valid JWT cookie and admin email before continuing.
 const requireAdmin = (req, res, next) => {
   try {
     const token = req.cookies?.token
