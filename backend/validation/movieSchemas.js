@@ -1,7 +1,9 @@
 const { z } = require('zod')
 
+// Allows one-year-ahead releases for announced upcoming movies.
 const maxReleaseYear = new Date().getFullYear() + 1
 
+// Shared schema for create/update movie payload validation.
 const movieSchema = z.object({
   name: z.string().trim().min(1, 'Name is required'),
   release: z.coerce
