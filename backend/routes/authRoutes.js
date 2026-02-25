@@ -10,6 +10,7 @@ const {
   logoutUser
 } = require('../controllers/authControllers')
 
+// Restrict auth route CORS to configured frontend origin.
 const corsOptions = {
   origin: config.clientOrigin,
   credentials: true
@@ -17,6 +18,7 @@ const corsOptions = {
 
 router.use(cors(corsOptions))
 
+// Auth API endpoints.
 router.get('/test', test)
 router.post('/register', registerUser)
 router.post('/login', loginUser)
