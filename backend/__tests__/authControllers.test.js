@@ -2,6 +2,7 @@ const { registerUser, loginUser } = require('../controllers/authControllers')
 const User = require('../models/user')
 const { hashPassword } = require('../helpers/auth')
 
+// Isolate controller logic from DB and hashing implementation.
 jest.mock('../models/user')
 jest.mock('../helpers/auth')
 
@@ -11,6 +12,7 @@ describe('authControllers', () => {
   })
 
   describe('registerUser', () => {
+    // Ensures schema validation rejects missing required fields.
     it('should return error if name is missing', async () => {
       const req = { body: { username: 'test', email: 'test@test.com', password: '123456' } }
       const res = { json: jest.fn(), status: jest.fn().mockReturnThis() }
@@ -35,6 +37,7 @@ describe('authControllers', () => {
       expect(res.json).toHaveBeenCalledWith({ error: 'Email already exists' })
     })
 
+    // Happy path: create user and return public fields.
     it('should create user successfully with valid data', async () => {
       const req = {
         body: { name: 'Test', username: 'test', email: 'test@test.com', password: '123456' }
@@ -60,6 +63,7 @@ describe('authControllers', () => {
   })
 
   describe('loginUser', () => {
+    // Ensures invalid payloads fail before auth checks.
     it('should return error for invalid email format', async () => {
       const req = { body: { email: 'invalid', password: '123456' } }
       const res = { json: jest.fn(), status: jest.fn().mockReturnThis() }
