@@ -249,6 +249,10 @@ REACT_APP_API_URL=  # Backend API URL (uses proxy if omitted)
 
 ## 🚀 Recent Updates (February 2026)
 
+### March 2026
+
+- **Mar 2**: Added concise backend code notes across routes, middleware, schemas, and tests for easier maintenance.
+
 - **Feb 17**: Backend validation refinement for movie release year constraints and clearer error messaging.
 
 - **Feb 16**: Documentation touch-up for project continuity and maintenance tracking.
