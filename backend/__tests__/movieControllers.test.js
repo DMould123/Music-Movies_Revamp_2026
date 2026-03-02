@@ -1,5 +1,6 @@
 const { getMovies } = require('../controllers/movieControllers')
 
+// Mock chainable Movie.find().sort() query used by controller.
 jest.mock('../models/movie', () => ({
   find: jest.fn().mockReturnThis(),
   sort: jest.fn().mockResolvedValue([
