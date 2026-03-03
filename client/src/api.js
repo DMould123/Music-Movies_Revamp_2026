@@ -18,6 +18,7 @@ api.interceptors.response.use(
       // Handle network or other axios errors
       console.error('API error:', error.message)
     }
+    // Preserve promise rejection so callers can handle errors per-request.
     return Promise.reject(error)
   }
 )
